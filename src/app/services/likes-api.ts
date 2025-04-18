@@ -22,3 +22,9 @@ export const likesApi = api.injectEndpoints({
     }),
   }),
 });
+
+export const { useAddMutation, useRemoveMutation } = likesApi;
+
+export const {
+  endpoints: { add, remove },
+} = likesApi;

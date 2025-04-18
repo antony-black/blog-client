@@ -14,12 +14,18 @@ export const followsApi = api.injectEndpoints({
         body: followingId,
       }),
     }),
-    unfollow: builder.mutation<TFollows, TFollowData>({
+    unfollow: builder.mutation<void, string>({
       query: followingId => ({
         url: "/follow",
-        method: "POST",
+        method: "DELETE",
         body: followingId,
       }),
     }),
   }),
 });
+
+export const { useFollowMutation, useUnfollowMutation } = followsApi;
+
+export const {
+  endpoints: { follow, unfollow },
+} = followsApi;
