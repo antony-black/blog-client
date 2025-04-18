@@ -1,4 +1,3 @@
-import { TFollows } from "../types";
 import { api } from "./api";
 
 type TFollowData = {
@@ -7,11 +6,11 @@ type TFollowData = {
 
 export const followsApi = api.injectEndpoints({
   endpoints: builder => ({
-    follow: builder.mutation<TFollows, TFollowData>({
-      query: followingId => ({
+    follow: builder.mutation<void, TFollowData>({
+      query: body => ({
         url: "/follow",
         method: "POST",
-        body: followingId,
+        body,
       }),
     }),
     unfollow: builder.mutation<void, string>({
