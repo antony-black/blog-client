@@ -14,12 +14,12 @@ const Navbar: React.FC = () => {
         </li>
         <li>
           <NavButton path="/following" icon={<FiUsers />}>
-            Posts
+            Following
           </NavButton>
         </li>
         <li>
           <NavButton path="/followers" icon={<FaUsers />}>
-            Posts
+            Followers
           </NavButton>
         </li>
       </ul>

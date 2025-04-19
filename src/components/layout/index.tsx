@@ -3,12 +3,7 @@ import Container from "../container";
 import Header from "../header";
 import Navbar from "../navbar";
 
-type TLayout = {
-  children: React.ReactNode;
-};
-
-
-const Layout: React.FC<TLayout> = () => {
+const Layout: React.FC = () => {
   return (
     <>
       <Header />

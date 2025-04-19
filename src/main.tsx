@@ -1,14 +1,55 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
 import { NextUIProvider } from "@nextui-org/react";
 
 import { ThemeProvider } from "./components/theme-provider";
 import { store } from "./app/store";
-import App from "./App";
 import "./index.css";
 
+import Auth from "./pages/auth";
+import Layout from "./components/layout";
+import Posts from "./pages/posts";
+import CurrentPost from "./pages/current-post";
+import Followers from "./pages/followers";
+import Following from "./pages/following";
+import UserProfile from "./pages/user-profile";
+
 const container = document.getElementById("root");
+
+const router = createBrowserRouter([
+  {
+    path: '/auth',
+    element: <Auth/>
+  },
+  {
+    path: '/',
+    element: <Layout/>,
+    children: [
+      {
+        path: '',
+        element: <Posts/>
+      },
+      {
+        path: 'posts/:id',
+        element: <CurrentPost/>
+      },
+      {
+        path: '/followers',
+        element: <Followers/>
+      },
+      {
+        path: '/following',
+        element: <Following/>
+      },
+      {
+        path: '/users/:id',
+        element: <UserProfile/>
+      },
+    ]
+  },
+])
 
 if (container) {
   const root = createRoot(container);
@@ -18,7 +59,7 @@ if (container) {
       <Provider store={store}>
         <NextUIProvider>
           <ThemeProvider>
-            <App />
+            <RouterProvider router={router}/>
           </ThemeProvider>
         </NextUIProvider>
       </Provider>
