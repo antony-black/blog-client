@@ -14,7 +14,7 @@ type TUpdatedUserData = {
   id: string;
 };
 
-const usersApi = api.injectEndpoints({
+export const usersApi = api.injectEndpoints({
   endpoints: builder => ({
     login: builder.mutation<TResponseData, TUserAuthData>({
       query: userData => ({
@@ -58,6 +58,7 @@ export const {
   useUpdateMutation,
   useCurrentQuery,
   useGetByIdQuery,
+  useLazyCurrentQuery
 } = usersApi;
 
 export const {

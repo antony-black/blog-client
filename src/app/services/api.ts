@@ -6,12 +6,20 @@ import { RootState } from "../store";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: BASE_URL,
-  // prepareHeaders: (headers, {getState}) => {
-  //   const token = (getState() as RootState)
-  // }
+  prepareHeaders: (headers, { getState }) => {
+    const token =
+      (getState() as RootState).auth.user?.accessToken ||
+      localStorage.getItem("token");
+
+    if (token) {
+      headers.set("authorization", `Bearer ${token}`);
+    }
+
+    return headers;
+  },
 });
 
-const baseQueryWithRetry = retry(baseQuery, {maxRetries: 2});
+const baseQueryWithRetry = retry(baseQuery, { maxRetries: 2 });
 
 export const api = createApi({
   reducerPath: "blogServerApi",
