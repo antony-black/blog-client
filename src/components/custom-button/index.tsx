@@ -3,7 +3,7 @@ import { JSX } from "react";
 
 type TCustomButton = {
   children: React.ReactNode;
-  icon: JSX.Element;
+  icon?: JSX.Element;
   className?: string;
   type?: "button" | "submit" | "reset";
   fullWidth?: boolean;
