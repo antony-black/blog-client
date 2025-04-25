@@ -18,34 +18,34 @@ export const usersApi = api.injectEndpoints({
   endpoints: builder => ({
     login: builder.mutation<TResponseData, TUserAuthData>({
       query: userData => ({
-        url: "/login",
+        url: "/users/login",
         method: "POST",
         body: userData,
       }),
     }),
     registration: builder.mutation<TResponseData, TUserAuthData>({
       query: userData => ({
-        url: "/registration",
+        url: "/users/registration",
         method: "POST",
         body: userData,
       }),
     }),
     update: builder.mutation<TUser, TUpdatedUserData>({
       query: ({ userData, id }) => ({
-        url: `/update/${id}`,
+        url: `/users/update/${id}`,
         method: "PUT",
         body: userData,
       }),
     }),
     current: builder.query<TUser, void>({
       query: () => ({
-        url: "/current",
+        url: "/users/current",
         method: "GET",
       }),
     }),
     getById: builder.query<TUser, string>({
       query: id => ({
-        url: `/${id}`,
+        url: `/users/${id}`,
         method: "GET",
       }),
     }),

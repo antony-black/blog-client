@@ -2,10 +2,14 @@ import { useForm } from "react-hook-form";
 import CustomInput from "../components/custom-input";
 import ErrorMessage from "../components/error-message";
 import { useState } from "react";
-import { useLoginMutation } from "../app/services/users-api";
+import {
+  useLazyCurrentQuery,
+  useLoginMutation,
+} from "../app/services/users-api";
 import { catchError } from "../utils/error-util";
 import { Link } from "@nextui-org/react";
 import CustomButton from "../components/custom-button";
+import { useNavigate } from "react-router-dom";
 
 type TLogin = {
   setSelected: (value: string) => void;
@@ -17,8 +21,10 @@ type TLoginUserData = {
 };
 
 const Login: React.FC<TLogin> = ({ setSelected }) => {
+  const navigate = useNavigate();
   const [login, { isLoading }] = useLoginMutation();
   const [error, setError] = useState<string>("");
+  const [triggerCurrentCuery] = useLazyCurrentQuery();
 
   const { control, handleSubmit } = useForm<TLoginUserData>({
     defaultValues: {
@@ -32,6 +38,8 @@ const Login: React.FC<TLogin> = ({ setSelected }) => {
   const onSubmit = async (userData: TLoginUserData) => {
     try {
       await login(userData).unwrap();
+      await triggerCurrentCuery().unwrap();
+      navigate("/");
     } catch (error) {
       catchError(error, setError);
     }
@@ -65,7 +73,12 @@ const Login: React.FC<TLogin> = ({ setSelected }) => {
         </Link>
       </div>
       <div className="flex gap-2 justify-end">
-        <CustomButton type="submit" fullWidth color="primary" isLoading={isLoading}>
+        <CustomButton
+          type="submit"
+          fullWidth
+          color="primary"
+          isLoading={isLoading}
+        >
           Login
         </CustomButton>
       </div>

@@ -15,41 +15,42 @@ import CurrentPost from "./pages/current-post";
 import Followers from "./pages/followers";
 import Following from "./pages/following";
 import UserProfile from "./pages/user-profile";
+import { AuthGuard } from "./features/auth-guard";
 
 const container = document.getElementById("root");
 
 const router = createBrowserRouter([
   {
-    path: '/auth',
-    element: <Auth/>
+    path: "/auth",
+    element: <Auth />,
   },
   {
-    path: '/',
-    element: <Layout/>,
+    path: "/",
+    element: <Layout />,
     children: [
       {
-        path: '',
-        element: <Posts/>
+        path: "",
+        element: <Posts />,
       },
       {
-        path: 'posts/:id',
-        element: <CurrentPost/>
+        path: "posts/:id",
+        element: <CurrentPost />,
       },
       {
-        path: '/followers',
-        element: <Followers/>
+        path: "/followers",
+        element: <Followers />,
       },
       {
-        path: '/following',
-        element: <Following/>
+        path: "/following",
+        element: <Following />,
       },
       {
-        path: '/users/:id',
-        element: <UserProfile/>
+        path: "/users/:id",
+        element: <UserProfile />,
       },
-    ]
+    ],
   },
-])
+]);
 
 if (container) {
   const root = createRoot(container);
@@ -59,7 +60,9 @@ if (container) {
       <Provider store={store}>
         <NextUIProvider>
           <ThemeProvider>
-            <RouterProvider router={router}/>
+            <AuthGuard>
+              <RouterProvider router={router} />
+            </AuthGuard>
           </ThemeProvider>
         </NextUIProvider>
       </Provider>

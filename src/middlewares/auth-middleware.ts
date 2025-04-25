@@ -8,10 +8,10 @@ listenerMiddleware.startListening({
   effect: async (action, listtenerApi) => {
     listtenerApi.cancelActiveListeners();
 
-    const token = action.payload.accessToken;
+    const accessToken = action.payload.accessToken;
 
-    if (token) {
-      localStorage.setItem("token", token);
+    if (accessToken) {
+      localStorage.setItem("accessToken", accessToken);
     }
   },
 });

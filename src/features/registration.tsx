@@ -2,7 +2,9 @@ import { useForm } from "react-hook-form";
 import CustomInput from "../components/custom-input";
 import ErrorMessage from "../components/error-message";
 import { useState } from "react";
-import { useLoginMutation } from "../app/services/users-api";
+import {
+  useRegistrationMutation,
+} from "../app/services/users-api";
 import { catchError } from "../utils/error-util";
 import { Link } from "@nextui-org/react";
 import CustomButton from "../components/custom-button";
@@ -18,7 +20,7 @@ type TRegistrationUserData = {
 };
 
 const Registration: React.FC<TRegistration> = ({ setSelected }) => {
-  const [login, { isLoading }] = useLoginMutation();
+  const [register, { isLoading }] = useRegistrationMutation();
   const [error, setError] = useState<string>("");
 
   const { control, handleSubmit } = useForm<TRegistrationUserData>({
@@ -33,14 +35,15 @@ const Registration: React.FC<TRegistration> = ({ setSelected }) => {
 
   const onSubmit = async (userData: TRegistrationUserData) => {
     try {
-      await login(userData).unwrap();
+      await register(userData).unwrap();
+      setSelected("login");
     } catch (error) {
       catchError(error, setError);
     }
   };
 
   return (
-    <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
+    <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
       <CustomInput
         control={control}
         name="name"

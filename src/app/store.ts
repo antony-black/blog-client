@@ -9,7 +9,9 @@ export const store = configureStore({
     auth,
   },
   middleware: getDefaultMiddleware => {
-    return getDefaultMiddleware().concat(api.middleware).prepend(listenerMiddleware.middleware)
+    return getDefaultMiddleware()
+      .concat(api.middleware)
+      .prepend(listenerMiddleware.middleware);
   },
 });
 
