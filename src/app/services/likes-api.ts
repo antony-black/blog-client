@@ -7,24 +7,24 @@ type TLikeData = {
 
 export const likesApi = api.injectEndpoints({
   endpoints: builder => ({
-    add: builder.mutation<TLike, TLikeData>({
+    addLike: builder.mutation<TLike, TLikeData>({
       query: postId => ({
-        url: "/add",
+        url: "/likes/add",
         method: "POST",
         body: postId,
       }),
     }),
-    remove: builder.mutation<void, string>({
+    removeLike: builder.mutation<void, string>({
       query: id => ({
-        url: `/remove/${id}`,
+        url: `/likes/remove/${id}`,
         method: "DELETE",
       }),
     }),
   }),
 });
 
-export const { useAddMutation, useRemoveMutation } = likesApi;
+export const { useAddLikeMutation, useRemoveLikeMutation } = likesApi;
 
 export const {
-  endpoints: { add, remove },
+  endpoints: { addLike, removeLike },
 } = likesApi;

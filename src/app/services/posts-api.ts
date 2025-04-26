@@ -1,34 +1,34 @@
 import { TPost } from "../types";
 import { api } from "./api";
 
-type TPostData = {
+export type TPostData = {
   content: string;
 };
 
 export const postsApi = api.injectEndpoints({
   endpoints: builder => ({
-    create: builder.mutation<TPost, TPostData>({
+    createPost: builder.mutation<TPost, TPostData>({
       query: postData => ({
-        url: "/create",
+        url: "/posts/create",
         method: "POST",
         body: postData,
       }),
     }),
-    getAll: builder.query<TPost[], void>({
+    getAllPosts: builder.query<TPost[], void>({
       query: () => ({
-        url: "/",
+        url: "/posts",
         method: "GET",
       }),
     }),
-    getById: builder.query<TPost, string>({
+    getPostById: builder.query<TPost, string>({
       query: id => ({
-        url: `/${id}`,
+        url: `/posts/${id}`,
         method: "GET",
       }),
     }),
-    remove: builder.mutation<void, string>({
+    removePost: builder.mutation<void, string>({
       query: id => ({
-        url: `/remove/${id}`,
+        url: `/posts/remove/${id}`,
         method: "DELETE",
       }),
     }),
@@ -36,14 +36,14 @@ export const postsApi = api.injectEndpoints({
 });
 
 export const {
-  useCreateMutation,
-  useGetAllQuery,
-  useGetByIdQuery,
-  useRemoveMutation,
-  useLazyGetAllQuery,
-  useLazyGetByIdQuery
+  useCreatePostMutation,
+  useGetAllPostsQuery,
+  useGetPostByIdQuery,
+  useRemovePostMutation,
+  useLazyGetAllPostsQuery,
+  useLazyGetPostByIdQuery
 } = postsApi;
 
 export const {
-  endpoints: { create, getById, getAll, remove },
+  endpoints: { createPost, getPostById, getAllPosts, removePost },
 } = postsApi;

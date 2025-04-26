@@ -7,24 +7,24 @@ type TCommentData = {
 
 export const commentsApi = api.injectEndpoints({
   endpoints: builder => ({
-    create: builder.mutation<TComment, TCommentData>({
+    createComment: builder.mutation<TComment, TCommentData>({
       query: commentData => ({
-        url: "/create",
+        url: "/comments/create",
         method: "POST",
         body: commentData,
       }),
     }),
-    remove: builder.mutation<void, string>({
+    removeComment: builder.mutation<void, string>({
       query: id => ({
-        url: `/remove/${id}`,
+        url: `/comments/remove/${id}`,
         method: "DELETE",
       }),
     }),
   }),
 });
 
-export const { useCreateMutation, useRemoveMutation } = commentsApi;
+export const { useCreateCommentMutation, useRemoveCommentMutation } = commentsApi;
 
 export const {
-  endpoints: { create, remove },
+  endpoints: { createComment, removeComment },
 } = commentsApi;
