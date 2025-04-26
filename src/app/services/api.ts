@@ -3,7 +3,7 @@ import { BASE_URL } from "../../constants";
 import { RootState } from "../store";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: BASE_URL,
+  baseUrl: `${BASE_URL}/api`,
   prepareHeaders: (headers, { getState }) => {
     const accessToken =
       (getState() as RootState).auth.accessToken ||
@@ -18,6 +18,7 @@ const baseQuery = fetchBaseQuery({
     return headers;
   },
 });
+// created the 'Profile'/ added 'logout' to the 'Header'/ changed 'BASE_URL'
 
 const baseQueryWithRetry = retry(baseQuery, { maxRetries: 2 });
 
