@@ -12,6 +12,7 @@ import { ThemeContext } from "../theme-provider";
 import { useAppDispatch } from "../../app/hooks";
 import { logout } from "../../features/auth-slice";
 import { useNavigate } from "react-router-dom";
+import CustomButton from "../custom-button";
 
 const Header: React.FC = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -36,11 +37,15 @@ const Header: React.FC = () => {
         >
           {theme === "light" ? <FaRegMoon /> : <LuSunMedium />}
         </NavbarItem>
-        <NavbarItem
-          className="lg:flex text-2xl cursor-pointer"
-          onClick={handleLogOut}
-        >
-          <CiLogout />
+        <NavbarItem className="lg:flex text-2xl cursor-pointer">
+          <CustomButton
+            className="gap-2"
+            color="default"
+            variant="flat"
+            onPress={handleLogOut}
+          >
+            <CiLogout /> <span>logout</span>
+          </CustomButton>
         </NavbarItem>
       </NavbarContent>
     </Navbar>

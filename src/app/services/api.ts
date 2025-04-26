@@ -18,7 +18,6 @@ const baseQuery = fetchBaseQuery({
     return headers;
   },
 });
-// created the 'Profile'/ added 'logout' to the 'Header'/ changed 'BASE_URL'
 
 const baseQueryWithRetry = retry(baseQuery, { maxRetries: 2 });
 

@@ -15,6 +15,16 @@ type TCustomButton = {
     | "success"
     | "warning"
     | "danger";
+  variant?:
+    | "solid"
+    | "bordered"
+    | "light"
+    | "flat"
+    | "faded"
+    | "shadow"
+    | "ghost";
+
+  onPress?: () => void;
 };
 
 const CustomButton: React.FC<TCustomButton> = ({
@@ -25,6 +35,7 @@ const CustomButton: React.FC<TCustomButton> = ({
   fullWidth,
   isLoading,
   color,
+  onPress,
 }) => {
   return (
     <Button
@@ -36,6 +47,7 @@ const CustomButton: React.FC<TCustomButton> = ({
       type={type}
       fullWidth={fullWidth}
       isLoading={isLoading}
+      onPress={onPress}
     >
       {children}
     </Button>
