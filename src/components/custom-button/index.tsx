@@ -23,7 +23,7 @@ type TCustomButton = {
     | "faded"
     | "shadow"
     | "ghost";
-
+  endContent?: React.ReactNode;
   onPress?: () => void;
 };
 
