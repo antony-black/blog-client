@@ -6,20 +6,41 @@ import {
 } from "@nextui-org/react";
 import { FaRegMoon } from "react-icons/fa";
 import { LuSunMedium } from "react-icons/lu";
+import { CiLogout } from "react-icons/ci";
 import { useContext } from "react";
 import { ThemeContext } from "../theme-provider";
+import { useAppDispatch } from "../../app/hooks";
+import { logout } from "../../features/auth-slice";
+import { useNavigate } from "react-router-dom";
 
 const Header: React.FC = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleLogOut = () => {
+    dispatch(logout());
+    localStorage.removeItem("accessToken");
+    navigate("/auth");
+  };
 
   return (
     <Navbar>
       <NavbarBrand>
         <p className="font-bold text-inherit">Network Social</p>
       </NavbarBrand>
-      <NavbarContent justify="end">
-        <NavbarItem className="lg:flex text-3xl cursor-pointer" onClick={toggleTheme}>
+      <NavbarContent className="gap-4" justify="end">
+        <NavbarItem
+          className="lg:flex text-3xl cursor-pointer"
+          onClick={toggleTheme}
+        >
           {theme === "light" ? <FaRegMoon /> : <LuSunMedium />}
+        </NavbarItem>
+        <NavbarItem
+          className="lg:flex text-2xl cursor-pointer"
+          onClick={handleLogOut}
+        >
+          <CiLogout />
         </NavbarItem>
       </NavbarContent>
     </Navbar>
