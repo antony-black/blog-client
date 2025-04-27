@@ -14,7 +14,7 @@ import { FaRegComment } from "react-icons/fa";
 
 import { useAppSelector } from "../../app/hooks";
 import { selectCurrent } from "../../features/auth-slice";
-import { useAddLikeMutation } from "../../app/services/likes-api";
+import { useAddLikeMutation, useRemoveLikeMutation } from "../../app/services/likes-api";
 import {
   useLazyGetAllPostsQuery,
   useLazyGetPostByIdQuery,
@@ -56,9 +56,8 @@ export const CustomCard: React.FC<TCustomCard> = ({
   cardFor = "post",
   likedByUser = false,
 }) => {
-  //TODO: rename endpoints
-  const [likePost] = useAddLikeMutation();
-  const [unlike] = useRemovePostMutation();
+  const [like] = useAddLikeMutation();
+  const [unlike] = useRemoveLikeMutation();
   const [triggerGetAllPosts] = useLazyGetAllPostsQuery();
   const [triggerGetPostById] = useLazyGetPostByIdQuery();
   const [deletePost, deletePostStatus] = useRemovePostMutation();
@@ -87,7 +86,7 @@ export const CustomCard: React.FC<TCustomCard> = ({
     try {
       likedByUser
         ? await unlike(id).unwrap()
-        : await likePost({ postId: id }).unwrap();
+        : await like({ postId: id }).unwrap();
 
       if (cardFor === "current-post") {
         await triggerGetPostById(id).unwrap();
