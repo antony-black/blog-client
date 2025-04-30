@@ -1,8 +1,9 @@
 import { TComment } from "../types";
 import { api } from "./api";
 
-type TCommentData = {
+export type TCommentData = {
   content: string;
+  postId: string;
 };
 
 export const commentsApi = api.injectEndpoints({
