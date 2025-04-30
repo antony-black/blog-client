@@ -14,7 +14,10 @@ import { FaRegComment } from "react-icons/fa";
 
 import { useAppSelector } from "../../app/hooks";
 import { selectCurrent } from "../../features/auth-slice";
-import { useAddLikeMutation, useRemoveLikeMutation } from "../../app/services/likes-api";
+import {
+  useAddLikeMutation,
+  useRemoveLikeMutation,
+} from "../../app/services/likes-api";
 import {
   useLazyGetAllPostsQuery,
   useLazyGetPostByIdQuery,
@@ -28,11 +31,13 @@ import { Typography } from "../typography";
 import { MetaInfo } from "../meta-info";
 import ErrorMessage from "../error-message";
 import { catchError } from "../../utils/error-util";
+import { TComment } from "../../app/types";
 
 type TCustomCard = {
   avatarUrl: string;
   name: string;
-  authorId: string;
+  postAuthorId: string;
+  comments?: TComment[];
   content: string;
   commentId?: string;
   likesCount?: number;
@@ -46,7 +51,8 @@ type TCustomCard = {
 export const CustomCard: React.FC<TCustomCard> = ({
   avatarUrl = "",
   name = "",
-  authorId = "",
+  postAuthorId = "",
+  comments = [],
   content = "",
   commentId = "",
   likesCount = 0,
@@ -124,10 +130,19 @@ export const CustomCard: React.FC<TCustomCard> = ({
     }
   };
 
+  const isCommentAuthor =
+    cardFor === "comment" &&
+    comments.find(comment => comment.id === commentId)?.userId ===
+      currentUser?.id;
+
+  const canDelete =
+    (cardFor !== "comment" && postAuthorId === currentUser?.id) ||
+    isCommentAuthor;
+
   return (
     <Card className="mb-5">
       <CardHeader className="justify-between items-center bg-transparent">
-        <Link to={`/users/${authorId}`}>
+        <Link to={`/users/${postAuthorId}`}>
           <User
             className="text-small font-semibold leading-none text-default-600"
             name={name}
@@ -135,7 +150,8 @@ export const CustomCard: React.FC<TCustomCard> = ({
             avatarUrl={avatarUrl}
           />
         </Link>
-        {authorId === currentUser?.id && (
+
+        {canDelete && (
           <div className="cursor-pointer" onClick={handleRemove}>
             {deletePostStatus.isLoading || deleteCommentStatus.isLoading ? (
               <Spinner />
@@ -148,20 +164,22 @@ export const CustomCard: React.FC<TCustomCard> = ({
       <CardBody className="px-3 py-2 mb-5">
         <Typography>{content}</Typography>
       </CardBody>
-      <CardFooter className="gap-3">
-        <div className="flex gap-5 items-center">
-          <div onClick={handleClick}>
-            <MetaInfo
-              count={likesCount}
-              Icon={likedByUser ? FcDislike : MdOutlineFavoriteBorder}
-            />
+      {cardFor !== "comment" && (
+        <CardFooter className="gap-3">
+          <div className="flex gap-5 items-center">
+            <div onClick={handleClick}>
+              <MetaInfo
+                count={likesCount}
+                Icon={likedByUser ? FcDislike : MdOutlineFavoriteBorder}
+              />
+            </div>
+            <Link to={`/posts/${id}`}>
+              <MetaInfo count={commentsCount} Icon={FaRegComment} />
+            </Link>
           </div>
-          <Link to={`/posts/${id}`}>
-            <MetaInfo count={commentsCount} Icon={FaRegComment} />
-          </Link>
-        </div>
-        <ErrorMessage error={error} />
-      </CardFooter>
+          <ErrorMessage error={error} />
+        </CardFooter>
+      )}
     </Card>
   );
 };
