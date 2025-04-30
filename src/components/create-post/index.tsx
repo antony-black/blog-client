@@ -57,7 +57,7 @@ export const CreatePost: React.FC = () => {
 
       <CustomButton
         className="flex-end"
-        color="success"
+        color="primary"
         endContent={<IoMdCreate />}
         type="submit"
       >
