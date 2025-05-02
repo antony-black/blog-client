@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Button, Card, Image, useDisclosure } from "@nextui-org/react";
+import { Button, Card, Image, Spinner, useDisclosure } from "@nextui-org/react";
 import { useSelector } from "react-redux";
 import { CiEdit } from "react-icons/ci";
 import {
@@ -27,17 +27,20 @@ import { formatToClientDate } from "../../utils/format-to-client-date";
 import { CountInfo } from "../../components/count-info";
 import { EditProfile } from "../../components/edit-profile";
 import { UserProfileTitles } from "../../enums/UserProfileTitles";
+import { catchError } from "../../utils/error-util";
+import ErrorMessage from "../../components/error-message";
 
 const UserProfile: React.FC = () => {
   const dispatch = useAppDispatch();
   const { id } = useParams<{ id: string }>();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const currentUser = useSelector(selectCurrent);
-  const { data } = useGetUserByIdQuery(id ?? "");
+  const { data, isLoading } = useGetUserByIdQuery(id ?? "");
   const [followUser] = useFollowMutation();
   const [unfollowUser] = useUnfollowMutation();
   const [triggerGetUserById] = useLazyGetUserByIdQuery();
   const [triggerCurrentUser] = useLazyCurrentQuery();
+  const [error, setError] = useState<string>("");
 
   useEffect(() => {
     return () => {
@@ -56,7 +59,7 @@ const UserProfile: React.FC = () => {
         await triggerCurrentUser().unwrap();
       }
     } catch (error) {
-      console.error(error);
+      catchError(error, setError);
     }
   };
 
@@ -68,12 +71,17 @@ const UserProfile: React.FC = () => {
         onClose();
       }
     } catch (error) {
-      console.error(error);
+      catchError(error, setError);
     }
   };
 
+  if (isLoading) {
+    return <Spinner />;
+  }
+
   return (
     <>
+      {error && <ErrorMessage error={error} />}
       {data && (
         <>
           <GoBack />
@@ -122,14 +130,12 @@ const UserProfile: React.FC = () => {
                 info={data.dateOfBirth && formatToClientDate(data.dateOfBirth)}
               />
               <ProfileInfo title={UserProfileTitles.ABOUT_ME} info={data.bio} />
-              //TODO: fix followers & following numbers
               <div className="flex gap-2">
                 <CountInfo count={data?.followers?.length} title="Followers" />
                 <CountInfo count={data?.following?.length} title="Following" />
               </div>
             </Card>
           </div>
-          //TODO: fix edition feature
           <EditProfile
             isOpen={isOpen}
             onClose={handleCloseEdition}

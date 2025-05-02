@@ -126,7 +126,6 @@ export const CustomCard: React.FC<TCustomCard> = ({
           throw new Error("Wrong argument cardFor");
       }
     } catch (error) {
-      console.log(error);
       catchError(error, setError);
     }
   };

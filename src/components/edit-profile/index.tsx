@@ -65,7 +65,7 @@ export const EditProfile: React.FC<TEditProfile> = ({
           formData.append("email", data.email);
         data.dateOfBirth &&
           formData.append(
-            "dadateOfBirthte",
+            "dateOfBirth",
             new Date(data.dateOfBirth).toISOString(),
           );
         data.bio && formData.append("bio", data.bio);
@@ -79,7 +79,27 @@ export const EditProfile: React.FC<TEditProfile> = ({
       catchError(error, setError);
     }
   };
-
+  // const onSubmit = async (data: TUser) => {
+  //   try {
+  //     if (id) {
+  //       const formData = new FormData();
+  //       if (data.name) formData.append("name", data.name);
+  //       if (data.email && data.email !== user?.email) formData.append("email", data.email);
+  //       if (data.dateOfBirth) {
+  //         formData.append("dateOfBirth", new Date(data.dateOfBirth).toISOString());
+  //       }
+  //       if (data.bio) formData.append("bio", data.bio);
+  //       if (data.location) formData.append("location", data.location);
+  //       // if (selectedFile) formData.append("avatar", selectedFile);
+  
+  //       await editUserProfile({ userData: formData, id }).unwrap();
+  //       onClose();
+  //     }
+  //   } catch (error) {
+  //     catchError(error, setError);
+  //   }
+  // };
+  
   return (
     <Modal
       className={`${theme} text-foreground`}
@@ -141,7 +161,7 @@ export const EditProfile: React.FC<TEditProfile> = ({
                   control={control}
                   name="location"
                   type="Location"
-                  label="email"
+                  label="location"
                   placeholder="change your location"
                 />
                 <ErrorMessage error={error} />

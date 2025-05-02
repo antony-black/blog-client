@@ -1,18 +1,19 @@
 import { useParams } from "react-router-dom";
+
 import { useGetPostByIdQuery } from "../../app/services/posts-api";
+
 import { CustomCard } from "../../components/custom-card";
 import { GoBack } from "../../components/go-back";
 import { CreateComment } from "../../components/create-comment";
 import { CardTypes } from "../../enums/CardTypes";
+import ErrorMessage from "../../components/error-message";
 
 const CurrentPost: React.FC = () => {
   const params = useParams<{ id: string }>();
-  const { data } = useGetPostByIdQuery(params.id ?? "");
+  const { data, isError } = useGetPostByIdQuery(params.id ?? "");
 
-  if (!data) {
-    return <h2>There is no post!</h2>;
-  } else {
-    console.log('data >>>>', data);
+  if (isError || !data) {
+    return <ErrorMessage error="There is no post!" />;
   }
 
   const {
@@ -46,8 +47,8 @@ const CurrentPost: React.FC = () => {
       </div>
 
       <div className="mt-10">
-        {data.comments
-          ? data.comments.map(comment => (
+        {comments
+          ? comments.map(comment => (
               <CustomCard
                 key={comment.id}
                 id={id}

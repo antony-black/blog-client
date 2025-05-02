@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Controller, useForm } from "react-hook-form";
 
@@ -10,16 +11,17 @@ import { Textarea } from "@nextui-org/react";
 import ErrorMessage from "../error-message";
 import { IoMdCreate } from "react-icons/io";
 import CustomButton from "../custom-button";
+import { catchError } from "../../utils/error-util";
 
 export const CreateComment: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [createComment] = useCreateCommentMutation();
   const [getPostById] = useLazyGetPostByIdQuery();
+    const [error, setError] = useState<string>("");
 
   const {
     handleSubmit,
     control,
-    formState: { errors },
     setValue,
   } = useForm<TCommentData>();
 
@@ -31,11 +33,9 @@ export const CreateComment: React.FC = () => {
         setValue("content", "");
       }
     } catch (error) {
-      console.error("error: ", error);
+      catchError(error, setError);
     }
   };
-
-  const error = errors?.content?.message as string;
 
   return (
     <form className="flex-grow" onSubmit={handleSubmit(onSubmit)}>
@@ -55,7 +55,7 @@ export const CreateComment: React.FC = () => {
           />
         )}
       />
-      {errors && <ErrorMessage error={error} />}
+      <ErrorMessage error={error} />
       <CustomButton
         className="flex-end"
         color="primary"

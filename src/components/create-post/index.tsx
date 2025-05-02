@@ -8,16 +8,17 @@ import { Textarea } from "@nextui-org/react";
 import ErrorMessage from "../error-message";
 import CustomButton from "../custom-button";
 import { IoMdCreate } from "react-icons/io";
+import { useState } from "react";
+import { catchError } from "../../utils/error-util";
 
 export const CreatePost: React.FC = () => {
   const [createPost] = useCreatePostMutation();
-  const [triggerGetAllPosts] = useLazyGetAllPostsQuery();
-  // const [error, setError] = useState<string>("");
+  const [triggerGetAllPosts] = useLazyGetAllPostsQuery();  
+  const [error, setError] = useState<string>("");
 
   const {
     handleSubmit,
     control,
-    formState: { errors },
     setValue,
   } = useForm<TPostData>();
 
@@ -27,12 +28,9 @@ export const CreatePost: React.FC = () => {
       setValue("content", "");
       await triggerGetAllPosts().unwrap();
     } catch (error) {
-      // catchError(error);
-      console.error("error:", error);
+      catchError(error, setError);
     }
   };
-
-  const error = errors?.content?.message as string;
 
   return (
     <form className="flex-grow" onSubmit={handleSubmit(onSubmit)}>
@@ -53,7 +51,7 @@ export const CreatePost: React.FC = () => {
         )}
       />
 
-      {errors && <ErrorMessage error={error} />}
+      <ErrorMessage error={error} />
 
       <CustomButton
         className="flex-end"
