@@ -30,7 +30,7 @@ export const usersApi = api.injectEndpoints({
         body: userData,
       }),
     }),
-    update: builder.mutation<TUser, TUpdatedUserData>({
+    editUserProfile: builder.mutation<TUser, TUpdatedUserData>({
       query: ({ userData, id }) => ({
         url: `/users/update/${id}`,
         method: "PUT",
@@ -55,7 +55,7 @@ export const usersApi = api.injectEndpoints({
 export const {
   useLoginMutation,
   useRegistrationMutation,
-  useUpdateMutation,
+  useEditUserProfileMutation,
   useCurrentQuery,
   useGetUserByIdQuery,
   useLazyGetUserByIdQuery,
@@ -63,5 +63,5 @@ export const {
 } = usersApi;
 
 export const {
-  endpoints: { login, registration, update, current, getUserById },
+  endpoints: { login, registration, editUserProfile, current, getUserById },
 } = usersApi;
