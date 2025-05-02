@@ -15,7 +15,7 @@ const Following : React.FC = () => {
 
   return (
     <>
-      {currentUser.followers.map(user => (
+      {currentUser.following.map(user => (
         <Link to={`/users/${user.following.id}`} key={user.following.id}>
           <Card>
             <CardBody className="block">
