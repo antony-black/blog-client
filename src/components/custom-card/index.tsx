@@ -140,7 +140,7 @@ export const CustomCard: React.FC<TCustomCard> = ({
     isCommentAuthor;
 
   return (
-    <Card className="mb-5">
+    <Card className="mb-5 w-full max-w-full sm:max-w-sm md:max-w-md lg:max-w-lg">
       <CardHeader className="justify-between items-center bg-transparent">
         <Link to={`/users/${postAuthorId}`}>
           <User
@@ -161,7 +161,7 @@ export const CustomCard: React.FC<TCustomCard> = ({
           </div>
         )}
       </CardHeader>
-      <CardBody className="px-3 py-2 mb-5">
+      <CardBody className="px-3 py-2 mb-5 break-words">
         <Typography>{content}</Typography>
       </CardBody>
       {cardFor !== "comment" && (

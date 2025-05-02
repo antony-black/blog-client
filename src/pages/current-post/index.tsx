@@ -14,7 +14,6 @@ const CurrentPost: React.FC = () => {
     console.log('data >>>>', data);
   }
 
-  // TODO: add DTO to the "author" properties to protect personal data: pass, createdAt, dateOfBirth, id etc.
   const {
     content,
     id,
