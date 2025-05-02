@@ -4,10 +4,10 @@ import { Input } from "@nextui-org/react";
 
 type TCustomInput = {
   name: string;
-  label?: string;
   placeholder: string;
   type: string;
   control: Control<any>;
+  label?: string;
   required?: string;
   endContent?: JSX.Element;
 };
