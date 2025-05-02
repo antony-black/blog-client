@@ -25,7 +25,7 @@ import { BASE_URL } from "../../constants";
 import { ProfileInfo } from "../../components/profile-info";
 import { formatToClientDate } from "../../utils/format-to-client-date";
 import { CountInfo } from "../../components/count-info";
-import { TFollows } from "../../app/types";
+import { EditProfile } from "../../components/edit-profile";
 
 const UserProfile: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -51,25 +51,25 @@ const UserProfile: React.FC = () => {
           ? await unfollowUser(id).unwrap()
           : await followUser({ followingId: id }).unwrap();
 
-        await triggerGetUserById(id);
-        await triggerCurrentUser();
+        await triggerGetUserById(id).unwrap();
+        await triggerCurrentUser().unwrap();
       }
     } catch (error) {
       console.error(error);
     }
   };
 
-  // const handleCloseEdition = async () => {
-  //   try {
-  //     if (id) {
-  //       await triggerGetUserById(id);
-  //       await triggerCurrentUser();
-  //       onClose();
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+  const handleCloseEdition = async () => {
+    try {
+      if (id) {
+        await triggerGetUserById(id).unwrap();
+        await triggerCurrentUser().unwrap();
+        onClose();
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <>
@@ -118,13 +118,19 @@ const UserProfile: React.FC = () => {
                 info={data.dateOfBirth && formatToClientDate(data.dateOfBirth)}
               />
               <ProfileInfo title="About me: " info={data.bio} />
-
+              //TODO: fix followers & following numbers
               <div className="flex gap-2">
-                <CountInfo count={data?.followers?.length} title="Followers"/>
-                <CountInfo count={data?.following?.length} title="Following"/>
+                <CountInfo count={data?.followers?.length} title="Followers" />
+                <CountInfo count={data?.following?.length} title="Following" />
               </div>
             </Card>
           </div>
+          //TODO: fix edition feature
+          <EditProfile
+            isOpen={isOpen}
+            onClose={handleCloseEdition}
+            user={data}
+          />
         </>
       )}
     </>
