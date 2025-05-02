@@ -1,4 +1,4 @@
-import { EUserProfileTitles } from "../../enums";
+import { EUserProfileTitles } from "@/enums";
 
 type TProfileInfo = {
   title: EUserProfileTitles;

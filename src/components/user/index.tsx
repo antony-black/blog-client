@@ -1,4 +1,5 @@
 import { User as NextUiUser } from "@nextui-org/react";
+
 import { BASE_URL } from "../../constants";
 
 type TUser = {

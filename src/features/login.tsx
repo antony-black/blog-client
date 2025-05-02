@@ -1,15 +1,16 @@
-import { useForm } from "react-hook-form";
-import CustomInput from "../components/custom-input";
-import ErrorMessage from "../components/error-message";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { Link } from "@nextui-org/react";
+
 import {
   useLazyCurrentQuery,
   useLoginMutation,
 } from "../app/services/users-api";
 import { catchError } from "../utils/error-util";
-import { Link } from "@nextui-org/react";
-import CustomButton from "../components/custom-button";
-import { useNavigate } from "react-router-dom";
+
+import { CustomButton, CustomInput, ErrorMessage } from "@/components";
+
 import { ECustomButtonColors, ECustomButtonTypes } from "../enums";
 
 type TLogin = {

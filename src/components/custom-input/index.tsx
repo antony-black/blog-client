@@ -11,7 +11,7 @@ type TCustomInput = {
   required?: string;
   endContent?: JSX.Element;
 };
-const CustomInput: React.FC<TCustomInput> = ({
+export const CustomInput: React.FC<TCustomInput> = ({
   name,
   label,
   placeholder,
@@ -46,5 +46,3 @@ const CustomInput: React.FC<TCustomInput> = ({
     />
   );
 };
-
-export default CustomInput;

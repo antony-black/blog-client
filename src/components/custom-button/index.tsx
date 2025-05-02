@@ -5,7 +5,7 @@ import {
   ECustomButtonColors,
   ECustomButtonTypes,
   ECustomButtonVariants,
-} from "../../enums";
+} from "@/enums";
 
 type TCustomButton = {
   children: React.ReactNode;
@@ -20,7 +20,7 @@ type TCustomButton = {
   onPress?: () => void;
 };
 
-const CustomButton: React.FC<TCustomButton> = ({
+export const CustomButton: React.FC<TCustomButton> = ({
   children,
   icon,
   className,
@@ -46,5 +46,3 @@ const CustomButton: React.FC<TCustomButton> = ({
     </Button>
   );
 };
-
-export default CustomButton;

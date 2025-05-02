@@ -1,8 +1,7 @@
 import { useGetAllPostsQuery } from "../../app/services/posts-api";
 
-import { CreatePost } from "../../components/create-post";
-import { CustomCard } from "../../components/custom-card";
-import { ECardTypes } from "../../enums";
+import { ECardTypes } from "@/enums";
+import { CreatePost, CustomCard } from "@/components";
 
 const Posts: React.FC = () => {
   const { data } = useGetAllPostsQuery();

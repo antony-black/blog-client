@@ -17,14 +17,12 @@ import { ThemeContext } from "../theme-provider";
 
 import { TUser } from "../../app/types";
 import { catchError } from "../../utils/error-util";
-import CustomInput from "../custom-input";
-import ErrorMessage from "../error-message";
 import {
   ECustomButtonColors,
   ECustomButtonTypes,
   ECustomButtonVariants,
-} from "../../enums";
-
+} from "@/enums";
+import { CustomInput, ErrorMessage } from "@/components";
 
 type TEditProfile = {
   isOpen: boolean;

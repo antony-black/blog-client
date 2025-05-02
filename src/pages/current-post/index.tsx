@@ -2,11 +2,13 @@ import { useParams } from "react-router-dom";
 
 import { useGetPostByIdQuery } from "../../app/services/posts-api";
 
-import { CustomCard } from "../../components/custom-card";
-import { GoBack } from "../../components/go-back";
-import { CreateComment } from "../../components/create-comment";
-import { ECardTypes } from "../../enums";
-import ErrorMessage from "../../components/error-message";
+import { ECardTypes } from "@/enums";
+import {
+  CustomCard,
+  GoBack,
+  CreateComment,
+  ErrorMessage,
+} from "@/components";
 
 const CurrentPost: React.FC = () => {
   const params = useParams<{ id: string }>();

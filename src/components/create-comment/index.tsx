@@ -10,10 +10,9 @@ import {
 } from "../../app/services/comments-api";
 import { useLazyGetPostByIdQuery } from "../../app/services/posts-api";
 
-import ErrorMessage from "../error-message";
-import CustomButton from "../custom-button";
 import { catchError } from "../../utils/error-util";
-import { ECustomButtonColors, ECustomButtonTypes } from "../../enums";
+import { ECustomButtonColors, ECustomButtonTypes } from "@/enums";
+import { ErrorMessage, CustomButton } from "@/components";
 
 export const CreateComment: React.FC = () => {
   const { id } = useParams<{ id: string }>();

@@ -20,19 +20,22 @@ import {
 } from "../../app/services/follows-api";
 import { useAppDispatch } from "../../app/hooks";
 
-import { GoBack } from "../../components/go-back";
 import { BASE_URL } from "../../constants";
-import { ProfileInfo } from "../../components/profile-info";
+// TODO: add aliase for "utils"
 import { formatToClientDate } from "../../utils/format-to-client-date";
-import { CountInfo } from "../../components/count-info";
-import { EditProfile } from "../../components/edit-profile";
 import { catchError } from "../../utils/error-util";
-import ErrorMessage from "../../components/error-message";
 import {
   ECustomButtonColors,
   ECustomButtonVariants,
   EUserProfileTitles,
-} from "../../enums";
+} from "@/enums";
+import {
+  ErrorMessage,
+  EditProfile,
+  CountInfo,
+  ProfileInfo,
+  GoBack
+} from "@/components";
 
 const UserProfile: React.FC = () => {
   const dispatch = useAppDispatch();

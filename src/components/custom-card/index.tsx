@@ -26,13 +26,10 @@ import {
 import { useRemoveCommentMutation } from "../../app/services/comments-api";
 import { formatToClientDate } from "../../utils/format-to-client-date";
 
-import { User } from "../user";
-import { Typography } from "../typography";
-import { MetaInfo } from "../meta-info";
-import ErrorMessage from "../error-message";
 import { catchError } from "../../utils/error-util";
 import { TComment } from "../../app/types";
-import { ECardTypes } from "../../enums";
+import { ECardTypes } from "@/enums";
+import { User, Typography, MetaInfo, ErrorMessage } from "@/components";
 
 type TCustomCard = {
   avatarUrl: string;

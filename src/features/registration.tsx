@@ -1,14 +1,12 @@
-import { useForm } from "react-hook-form";
-import CustomInput from "../components/custom-input";
-import ErrorMessage from "../components/error-message";
 import { useState } from "react";
-import {
-  useRegistrationMutation,
-} from "../app/services/users-api";
-import { catchError } from "../utils/error-util";
+import { useForm } from "react-hook-form";
 import { Link } from "@nextui-org/react";
-import CustomButton from "../components/custom-button";
+
+import { useRegistrationMutation } from "../app/services/users-api";
+import { catchError } from "../utils/error-util";
+
 import { ECustomButtonColors, ECustomButtonTypes } from "../enums";
+import { CustomButton, CustomInput, ErrorMessage } from "@/components";
 
 type TRegistration = {
   setSelected: (value: string) => void;

@@ -4,7 +4,7 @@ import { Card, CardBody } from "@nextui-org/react";
 import { useAppSelector } from "../../app/hooks";
 import { selectCurrent } from "../../features/auth-slice";
 
-import { User } from "../../components/user";
+import { User } from "@/components";
 
 const Followers: React.FC = () => {
   const currentUser = useAppSelector(selectCurrent);

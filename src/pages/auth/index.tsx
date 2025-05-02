@@ -3,7 +3,7 @@ import { Card, CardBody, Tab, Tabs } from "@nextui-org/react";
 
 import Login from "../../features/login";
 import Registration from "../../features/registration";
-import { ECustomButtonColors } from "../../enums";
+import { ECustomButtonColors } from "@/enums";
 
 const Auth: React.FC = () => {
   const [selected, setSelected] = useState("login");
