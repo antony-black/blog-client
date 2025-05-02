@@ -26,6 +26,7 @@ import { ProfileInfo } from "../../components/profile-info";
 import { formatToClientDate } from "../../utils/format-to-client-date";
 import { CountInfo } from "../../components/count-info";
 import { EditProfile } from "../../components/edit-profile";
+import { UserProfileTitles } from "../../enums/UserProfileTitles";
 
 const UserProfile: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -111,13 +112,16 @@ const UserProfile: React.FC = () => {
               </div>
             </Card>
             <Card className="flex flex-col space-y-4 p-5 flex-1">
-              <ProfileInfo title="Email: " info={data.email} />
-              <ProfileInfo title="Location: " info={data.location} />
+              <ProfileInfo title={UserProfileTitles.EMAIL} info={data.email} />
               <ProfileInfo
-                title="Birthday: "
+                title={UserProfileTitles.LOCATION}
+                info={data.location}
+              />
+              <ProfileInfo
+                title={UserProfileTitles.BIRTHDAY}
                 info={data.dateOfBirth && formatToClientDate(data.dateOfBirth)}
               />
-              <ProfileInfo title="About me: " info={data.bio} />
+              <ProfileInfo title={UserProfileTitles.ABOUT_ME} info={data.bio} />
               //TODO: fix followers & following numbers
               <div className="flex gap-2">
                 <CountInfo count={data?.followers?.length} title="Followers" />
