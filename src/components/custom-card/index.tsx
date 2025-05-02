@@ -32,6 +32,7 @@ import { MetaInfo } from "../meta-info";
 import ErrorMessage from "../error-message";
 import { catchError } from "../../utils/error-util";
 import { TComment } from "../../app/types";
+import { CardTypes } from "../../enums/CardTypes";
 
 type TCustomCard = {
   avatarUrl: string;
@@ -44,7 +45,7 @@ type TCustomCard = {
   commentsCount?: number;
   createdAt?: Date;
   id?: string;
-  cardFor?: "comment" | "post" | "current-post";
+  cardFor?: CardTypes;
   likedByUser?: boolean;
 };
 
