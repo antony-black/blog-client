@@ -12,6 +12,7 @@ import ErrorMessage from "../error-message";
 import { IoMdCreate } from "react-icons/io";
 import CustomButton from "../custom-button";
 import { catchError } from "../../utils/error-util";
+import { CustomButtonColors, CustomButtonTypes } from "../../enums/CustomButtonPropertiesTypes";
 
 export const CreateComment: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -58,9 +59,9 @@ export const CreateComment: React.FC = () => {
       <ErrorMessage error={error} />
       <CustomButton
         className="flex-end"
-        color="primary"
+        color={CustomButtonColors.PRIMARY}
         endContent={<IoMdCreate />}
-        type="submit"
+        type={CustomButtonTypes.SUBMIT}
       >
         Add comment
       </CustomButton>

@@ -19,6 +19,11 @@ import { catchError } from "../../utils/error-util";
 import CustomInput from "../custom-input";
 import { MdOutlineEmail } from "react-icons/md";
 import ErrorMessage from "../error-message";
+import {
+  CustomButtonColors,
+  CustomButtonTypes,
+  CustomButtonVariants,
+} from "../../enums/CustomButtonPropertiesTypes";
 
 type TEditProfile = {
   isOpen: boolean;
@@ -91,7 +96,7 @@ export const EditProfile: React.FC<TEditProfile> = ({
   //       if (data.bio) formData.append("bio", data.bio);
   //       if (data.location) formData.append("location", data.location);
   //       // if (selectedFile) formData.append("avatar", selectedFile);
-  
+
   //       await editUserProfile({ userData: formData, id }).unwrap();
   //       onClose();
   //     }
@@ -99,7 +104,7 @@ export const EditProfile: React.FC<TEditProfile> = ({
   //     catchError(error, setError);
   //   }
   // };
-  
+
   return (
     <Modal
       className={`${theme} text-foreground`}
@@ -167,8 +172,8 @@ export const EditProfile: React.FC<TEditProfile> = ({
                 <ErrorMessage error={error} />
                 <div className="flex gap-2 justify-end">
                   <Button
-                    type="submit"
-                    color="primary"
+                    type={CustomButtonTypes.SUBMIT}
+                    color={CustomButtonColors.PRIMARY}
                     fullWidth
                     isLoading={isLoading}
                   >
@@ -178,7 +183,11 @@ export const EditProfile: React.FC<TEditProfile> = ({
               </form>
             </ModalBody>
             <ModalFooter>
-              <Button color="danger" variant="light" onPress={onClose}>
+              <Button
+                color={CustomButtonColors.DANGER}
+                variant={CustomButtonVariants.LIGHT}
+                onPress={onClose}
+              >
                 Close
               </Button>
             </ModalFooter>

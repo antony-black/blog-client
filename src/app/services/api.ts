@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery, retry } from "@reduxjs/toolkit/query/react";
 import { BASE_URL } from "../../constants";
 import { RootState } from "../store";
-
+// TODO: assign all strings to const
 const baseQuery = fetchBaseQuery({
   baseUrl: `${BASE_URL}/api`,
   prepareHeaders: (headers, { getState }) => {

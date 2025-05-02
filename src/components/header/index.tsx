@@ -13,6 +13,7 @@ import { useAppDispatch } from "../../app/hooks";
 import { logout } from "../../features/auth-slice";
 import { useNavigate } from "react-router-dom";
 import CustomButton from "../custom-button";
+import { CustomButtonColors, CustomButtonVariants } from "../../enums/CustomButtonPropertiesTypes";
 
 const Header: React.FC = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -40,8 +41,8 @@ const Header: React.FC = () => {
         <NavbarItem className="lg:flex text-2xl cursor-pointer">
           <CustomButton
             className="gap-2"
-            color="default"
-            variant="flat"
+            color={CustomButtonColors.DEFAULT}
+            variant={CustomButtonVariants.FLAT}
             onPress={handleLogOut}
           >
             <CiLogout /> <span>logout</span>

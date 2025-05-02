@@ -10,6 +10,7 @@ import CustomButton from "../custom-button";
 import { IoMdCreate } from "react-icons/io";
 import { useState } from "react";
 import { catchError } from "../../utils/error-util";
+import { CustomButtonColors, CustomButtonTypes } from "../../enums/CustomButtonPropertiesTypes";
 
 export const CreatePost: React.FC = () => {
   const [createPost] = useCreatePostMutation();
@@ -55,9 +56,9 @@ export const CreatePost: React.FC = () => {
 
       <CustomButton
         className="flex-end"
-        color="primary"
+        color={CustomButtonColors.PRIMARY}
         endContent={<IoMdCreate />}
-        type="submit"
+        type={CustomButtonTypes.SUBMIT}
       >
         Add post
       </CustomButton>

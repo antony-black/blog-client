@@ -10,6 +10,7 @@ import { catchError } from "../utils/error-util";
 import { Link } from "@nextui-org/react";
 import CustomButton from "../components/custom-button";
 import { useNavigate } from "react-router-dom";
+import { CustomButtonColors, CustomButtonTypes } from "../enums/CustomButtonPropertiesTypes";
 
 type TLogin = {
   setSelected: (value: string) => void;
@@ -74,9 +75,9 @@ const Login: React.FC<TLogin> = ({ setSelected }) => {
       </div>
       <div className="flex gap-2 justify-end">
         <CustomButton
-          type="submit"
+          type={CustomButtonTypes.SUBMIT}
           fullWidth
-          color="primary"
+          color={CustomButtonColors.PRIMARY}
           isLoading={isLoading}
         >
           Login

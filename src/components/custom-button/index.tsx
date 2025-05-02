@@ -1,28 +1,16 @@
 import { Button } from "@nextui-org/react";
 import { JSX } from "react";
+import { CustomButtonColors, CustomButtonTypes, CustomButtonVariants } from "../../enums/CustomButtonPropertiesTypes";
 
 type TCustomButton = {
   children: React.ReactNode;
   icon?: JSX.Element;
   className?: string;
-  type?: "button" | "submit" | "reset";
+  type?: CustomButtonTypes;
   fullWidth?: boolean;
   isLoading?: boolean;
-  color?:
-    | "default"
-    | "primary"
-    | "secondary"
-    | "success"
-    | "warning"
-    | "danger";
-  variant?:
-    | "solid"
-    | "bordered"
-    | "light"
-    | "flat"
-    | "faded"
-    | "shadow"
-    | "ghost";
+  color?: CustomButtonColors;
+  variant?: CustomButtonVariants;
   endContent?: React.ReactNode;
   onPress?: () => void;
 };
@@ -42,7 +30,7 @@ const CustomButton: React.FC<TCustomButton> = ({
       className={className}
       startContent={icon}
       size="lg"
-      variant="light"
+      variant={CustomButtonVariants.LIGHT}
       color={color}
       type={type}
       fullWidth={fullWidth}

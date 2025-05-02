@@ -29,6 +29,10 @@ import { EditProfile } from "../../components/edit-profile";
 import { UserProfileTitles } from "../../enums/UserProfileTitles";
 import { catchError } from "../../utils/error-util";
 import ErrorMessage from "../../components/error-message";
+import {
+  CustomButtonColors,
+  CustomButtonVariants,
+} from "../../enums/CustomButtonPropertiesTypes";
 
 const UserProfile: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -99,8 +103,12 @@ const UserProfile: React.FC = () => {
                 {currentUser?.id !== id ? (
                   <Button
                     className="gap-2"
-                    color={data.isFollowing ? "default" : "primary"}
-                    variant="flat"
+                    color={
+                      data.isFollowing
+                        ? CustomButtonColors.DEFAULT
+                        : CustomButtonColors.PRIMARY
+                    }
+                    variant={CustomButtonVariants.FLAT}
                     onPress={handleFollow}
                     endContent={
                       data.isFollowing ? (

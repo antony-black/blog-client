@@ -8,6 +8,7 @@ import {
 import { catchError } from "../utils/error-util";
 import { Link } from "@nextui-org/react";
 import CustomButton from "../components/custom-button";
+import { CustomButtonColors, CustomButtonTypes } from "../enums/CustomButtonPropertiesTypes";
 
 type TRegistration = {
   setSelected: (value: string) => void;
@@ -78,9 +79,9 @@ const Registration: React.FC<TRegistration> = ({ setSelected }) => {
       </div>
       <div className="flex gap-2 justify-end">
         <CustomButton
-          type="submit"
+          type={CustomButtonTypes.SUBMIT}
           fullWidth
-          color="primary"
+          color={CustomButtonColors.PRIMARY}
           isLoading={isLoading}
         >
           Register
