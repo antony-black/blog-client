@@ -32,7 +32,7 @@ import { MetaInfo } from "../meta-info";
 import ErrorMessage from "../error-message";
 import { catchError } from "../../utils/error-util";
 import { TComment } from "../../app/types";
-import { CardTypes } from "../../enums/CardTypes";
+import { ECardTypes } from "../../enums";
 
 type TCustomCard = {
   avatarUrl: string;
@@ -45,7 +45,7 @@ type TCustomCard = {
   commentsCount?: number;
   createdAt?: Date;
   id?: string;
-  cardFor?: CardTypes;
+  cardFor?: ECardTypes;
   likedByUser?: boolean;
 };
 
@@ -60,7 +60,7 @@ export const CustomCard: React.FC<TCustomCard> = ({
   commentsCount = 0,
   createdAt,
   id = "",
-  cardFor = CardTypes.POST,
+  cardFor = ECardTypes.POST,
   likedByUser = false,
 }) => {
   const [like] = useAddLikeMutation();
@@ -131,12 +131,12 @@ export const CustomCard: React.FC<TCustomCard> = ({
   };
 
   const isCommentAuthor =
-    cardFor === CardTypes.COMMENT &&
+    cardFor === ECardTypes.COMMENT &&
     comments.find(comment => comment.id === commentId)?.userId ===
       currentUser?.id;
 
   const canDelete =
-    (cardFor !== CardTypes.COMMENT && postAuthorId === currentUser?.id) ||
+    (cardFor !== ECardTypes.COMMENT && postAuthorId === currentUser?.id) ||
     isCommentAuthor;
 
   return (
@@ -164,7 +164,7 @@ export const CustomCard: React.FC<TCustomCard> = ({
       <CardBody className="px-3 py-2 mb-5 break-words">
         <Typography>{content}</Typography>
       </CardBody>
-      {cardFor !== CardTypes.COMMENT && (
+      {cardFor !== ECardTypes.COMMENT && (
         <CardFooter className="gap-3">
           <div className="flex gap-5 items-center">
             <div onClick={handleClick}>

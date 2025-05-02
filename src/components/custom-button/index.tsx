@@ -1,16 +1,21 @@
-import { Button } from "@nextui-org/react";
 import { JSX } from "react";
-import { CustomButtonColors, CustomButtonTypes, CustomButtonVariants } from "../../enums/CustomButtonPropertiesTypes";
+import { Button } from "@nextui-org/react";
+
+import {
+  ECustomButtonColors,
+  ECustomButtonTypes,
+  ECustomButtonVariants,
+} from "../../enums";
 
 type TCustomButton = {
   children: React.ReactNode;
   icon?: JSX.Element;
   className?: string;
-  type?: CustomButtonTypes;
+  type?: ECustomButtonTypes;
   fullWidth?: boolean;
   isLoading?: boolean;
-  color?: CustomButtonColors;
-  variant?: CustomButtonVariants;
+  color?: ECustomButtonColors;
+  variant?: ECustomButtonVariants;
   endContent?: React.ReactNode;
   onPress?: () => void;
 };
@@ -30,7 +35,7 @@ const CustomButton: React.FC<TCustomButton> = ({
       className={className}
       startContent={icon}
       size="lg"
-      variant={CustomButtonVariants.LIGHT}
+      variant={ECustomButtonVariants.LIGHT}
       color={color}
       type={type}
       fullWidth={fullWidth}

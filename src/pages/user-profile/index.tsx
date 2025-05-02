@@ -26,13 +26,13 @@ import { ProfileInfo } from "../../components/profile-info";
 import { formatToClientDate } from "../../utils/format-to-client-date";
 import { CountInfo } from "../../components/count-info";
 import { EditProfile } from "../../components/edit-profile";
-import { UserProfileTitles } from "../../enums/UserProfileTitles";
 import { catchError } from "../../utils/error-util";
 import ErrorMessage from "../../components/error-message";
 import {
-  CustomButtonColors,
-  CustomButtonVariants,
-} from "../../enums/CustomButtonPropertiesTypes";
+  ECustomButtonColors,
+  ECustomButtonVariants,
+  EUserProfileTitles,
+} from "../../enums";
 
 const UserProfile: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -105,10 +105,10 @@ const UserProfile: React.FC = () => {
                     className="gap-2"
                     color={
                       data.isFollowing
-                        ? CustomButtonColors.DEFAULT
-                        : CustomButtonColors.PRIMARY
+                        ? ECustomButtonColors.DEFAULT
+                        : ECustomButtonColors.PRIMARY
                     }
-                    variant={CustomButtonVariants.FLAT}
+                    variant={ECustomButtonVariants.FLAT}
                     onPress={handleFollow}
                     endContent={
                       data.isFollowing ? (
@@ -128,16 +128,19 @@ const UserProfile: React.FC = () => {
               </div>
             </Card>
             <Card className="flex flex-col space-y-4 p-5 flex-1">
-              <ProfileInfo title={UserProfileTitles.EMAIL} info={data.email} />
+              <ProfileInfo title={EUserProfileTitles.EMAIL} info={data.email} />
               <ProfileInfo
-                title={UserProfileTitles.LOCATION}
+                title={EUserProfileTitles.LOCATION}
                 info={data.location}
               />
               <ProfileInfo
-                title={UserProfileTitles.BIRTHDAY}
+                title={EUserProfileTitles.BIRTHDAY}
                 info={data.dateOfBirth && formatToClientDate(data.dateOfBirth)}
               />
-              <ProfileInfo title={UserProfileTitles.ABOUT_ME} info={data.bio} />
+              <ProfileInfo
+                title={EUserProfileTitles.ABOUT_ME}
+                info={data.bio}
+              />
               <div className="flex gap-2">
                 <CountInfo count={data?.followers?.length} title="Followers" />
                 <CountInfo count={data?.following?.length} title="Following" />

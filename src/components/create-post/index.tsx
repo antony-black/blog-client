@@ -1,27 +1,25 @@
+import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { Textarea } from "@nextui-org/react";
+import { IoMdCreate } from "react-icons/io";
+
 import {
   TPostData,
   useCreatePostMutation,
   useLazyGetAllPostsQuery,
 } from "../../app/services/posts-api";
-import { Textarea } from "@nextui-org/react";
+
 import ErrorMessage from "../error-message";
 import CustomButton from "../custom-button";
-import { IoMdCreate } from "react-icons/io";
-import { useState } from "react";
 import { catchError } from "../../utils/error-util";
-import { CustomButtonColors, CustomButtonTypes } from "../../enums/CustomButtonPropertiesTypes";
+import { ECustomButtonColors, ECustomButtonTypes } from "../../enums";
 
 export const CreatePost: React.FC = () => {
   const [createPost] = useCreatePostMutation();
-  const [triggerGetAllPosts] = useLazyGetAllPostsQuery();  
+  const [triggerGetAllPosts] = useLazyGetAllPostsQuery();
   const [error, setError] = useState<string>("");
 
-  const {
-    handleSubmit,
-    control,
-    setValue,
-  } = useForm<TPostData>();
+  const { handleSubmit, control, setValue } = useForm<TPostData>();
 
   const onSubmit = async (postData: TPostData) => {
     try {
@@ -56,9 +54,9 @@ export const CreatePost: React.FC = () => {
 
       <CustomButton
         className="flex-end"
-        color={CustomButtonColors.PRIMARY}
+        color={ECustomButtonColors.PRIMARY}
         endContent={<IoMdCreate />}
-        type={CustomButtonTypes.SUBMIT}
+        type={ECustomButtonTypes.SUBMIT}
       >
         Add post
       </CustomButton>

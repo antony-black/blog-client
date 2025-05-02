@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Navbar,
   NavbarBrand,
@@ -7,13 +9,13 @@ import {
 import { FaRegMoon } from "react-icons/fa";
 import { LuSunMedium } from "react-icons/lu";
 import { CiLogout } from "react-icons/ci";
-import { useContext } from "react";
+
 import { ThemeContext } from "../theme-provider";
 import { useAppDispatch } from "../../app/hooks";
 import { logout } from "../../features/auth-slice";
-import { useNavigate } from "react-router-dom";
+
 import CustomButton from "../custom-button";
-import { CustomButtonColors, CustomButtonVariants } from "../../enums/CustomButtonPropertiesTypes";
+import { ECustomButtonColors, ECustomButtonVariants } from "../../enums";
 
 const Header: React.FC = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -41,8 +43,8 @@ const Header: React.FC = () => {
         <NavbarItem className="lg:flex text-2xl cursor-pointer">
           <CustomButton
             className="gap-2"
-            color={CustomButtonColors.DEFAULT}
-            variant={CustomButtonVariants.FLAT}
+            color={ECustomButtonColors.DEFAULT}
+            variant={ECustomButtonVariants.FLAT}
             onPress={handleLogOut}
           >
             <CiLogout /> <span>logout</span>

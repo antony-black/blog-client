@@ -1,18 +1,19 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Controller, useForm } from "react-hook-form";
+import { Textarea } from "@nextui-org/react";
+import { IoMdCreate } from "react-icons/io";
 
 import {
   TCommentData,
   useCreateCommentMutation,
 } from "../../app/services/comments-api";
 import { useLazyGetPostByIdQuery } from "../../app/services/posts-api";
-import { Textarea } from "@nextui-org/react";
+
 import ErrorMessage from "../error-message";
-import { IoMdCreate } from "react-icons/io";
 import CustomButton from "../custom-button";
 import { catchError } from "../../utils/error-util";
-import { CustomButtonColors, CustomButtonTypes } from "../../enums/CustomButtonPropertiesTypes";
+import { ECustomButtonColors, ECustomButtonTypes } from "../../enums";
 
 export const CreateComment: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -59,9 +60,9 @@ export const CreateComment: React.FC = () => {
       <ErrorMessage error={error} />
       <CustomButton
         className="flex-end"
-        color={CustomButtonColors.PRIMARY}
+        color={ECustomButtonColors.PRIMARY}
         endContent={<IoMdCreate />}
-        type={CustomButtonTypes.SUBMIT}
+        type={ECustomButtonTypes.SUBMIT}
       >
         Add comment
       </CustomButton>

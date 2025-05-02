@@ -5,7 +5,7 @@ import { useGetPostByIdQuery } from "../../app/services/posts-api";
 import { CustomCard } from "../../components/custom-card";
 import { GoBack } from "../../components/go-back";
 import { CreateComment } from "../../components/create-comment";
-import { CardTypes } from "../../enums/CardTypes";
+import { ECardTypes } from "../../enums";
 import ErrorMessage from "../../components/error-message";
 
 const CurrentPost: React.FC = () => {
@@ -32,7 +32,7 @@ const CurrentPost: React.FC = () => {
       <GoBack />
       <CustomCard
         id={id}
-        cardFor={CardTypes.CURRENT_POST}
+        cardFor={ECardTypes.CURRENT_POST}
         avatarUrl={author.avatarUrl ?? ""}
         name={author.name ?? ""}
         postAuthorId={authorId}
@@ -52,7 +52,7 @@ const CurrentPost: React.FC = () => {
               <CustomCard
                 key={comment.id}
                 id={id}
-                cardFor={CardTypes.COMMENT}
+                cardFor={ECardTypes.COMMENT}
                 avatarUrl={comment.user.avatarUrl ?? ""}
                 name={comment.user.name ?? ""}
                 postAuthorId={authorId}

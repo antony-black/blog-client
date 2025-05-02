@@ -1,4 +1,4 @@
-export enum UserProfileTitles {
+export enum EUserProfileTitles {
   EMAIL = "Email: ",
   LOCATION = "Location: ",
   BIRTHDAY = "Birthday: ",

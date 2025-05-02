@@ -1,8 +1,9 @@
-import { Card, CardBody, Tab, Tabs } from "@nextui-org/react";
 import { useState } from "react";
+import { Card, CardBody, Tab, Tabs } from "@nextui-org/react";
+
 import Login from "../../features/login";
 import Registration from "../../features/registration";
-import { CustomButtonColors } from "../../enums/CustomButtonPropertiesTypes";
+import { ECustomButtonColors } from "../../enums";
 
 const Auth: React.FC = () => {
   const [selected, setSelected] = useState("login");
@@ -16,7 +17,7 @@ const Auth: React.FC = () => {
               fullWidth
               aria-label="Tabs form"
               selectedKey={selected}
-              color={CustomButtonColors.PRIMARY}
+              color={ECustomButtonColors.PRIMARY}
               size="md"
               onSelectionChange={key => setSelected(key as string)}
             >

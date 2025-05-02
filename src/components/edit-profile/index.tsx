@@ -10,6 +10,7 @@ import {
   ModalHeader,
   Textarea,
 } from "@nextui-org/react";
+import { MdOutlineEmail } from "react-icons/md";
 
 import { useEditUserProfileMutation } from "../../app/services/users-api";
 import { ThemeContext } from "../theme-provider";
@@ -17,13 +18,13 @@ import { ThemeContext } from "../theme-provider";
 import { TUser } from "../../app/types";
 import { catchError } from "../../utils/error-util";
 import CustomInput from "../custom-input";
-import { MdOutlineEmail } from "react-icons/md";
 import ErrorMessage from "../error-message";
 import {
-  CustomButtonColors,
-  CustomButtonTypes,
-  CustomButtonVariants,
-} from "../../enums/CustomButtonPropertiesTypes";
+  ECustomButtonColors,
+  ECustomButtonTypes,
+  ECustomButtonVariants,
+} from "../../enums";
+
 
 type TEditProfile = {
   isOpen: boolean;
@@ -172,8 +173,8 @@ export const EditProfile: React.FC<TEditProfile> = ({
                 <ErrorMessage error={error} />
                 <div className="flex gap-2 justify-end">
                   <Button
-                    type={CustomButtonTypes.SUBMIT}
-                    color={CustomButtonColors.PRIMARY}
+                    type={ECustomButtonTypes.SUBMIT}
+                    color={ECustomButtonColors.PRIMARY}
                     fullWidth
                     isLoading={isLoading}
                   >
@@ -184,8 +185,8 @@ export const EditProfile: React.FC<TEditProfile> = ({
             </ModalBody>
             <ModalFooter>
               <Button
-                color={CustomButtonColors.DANGER}
-                variant={CustomButtonVariants.LIGHT}
+                color={ECustomButtonColors.DANGER}
+                variant={ECustomButtonVariants.LIGHT}
                 onPress={onClose}
               >
                 Close

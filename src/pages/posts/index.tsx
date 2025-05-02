@@ -1,7 +1,8 @@
 import { useGetAllPostsQuery } from "../../app/services/posts-api";
+
 import { CreatePost } from "../../components/create-post";
 import { CustomCard } from "../../components/custom-card";
-import { CardTypes } from "../../enums/CardTypes";
+import { ECardTypes } from "../../enums";
 
 const Posts: React.FC = () => {
   const { data } = useGetAllPostsQuery();
@@ -23,7 +24,7 @@ const Posts: React.FC = () => {
               commentsCount={post.comments.length}
               likedByUser={post.likedByUser}
               createdAt={post.createdAt}
-              cardFor={CardTypes.POST}
+              cardFor={ECardTypes.POST}
             />
           ))
         : null}

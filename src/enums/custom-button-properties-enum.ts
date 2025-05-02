@@ -1,10 +1,10 @@
-export enum CustomButtonTypes {
+export enum ECustomButtonTypes {
   BUTTON = "button",
   SUBMIT = "submit",
   RESET = "reset",
 }
 
-export enum CustomButtonColors {
+export enum ECustomButtonColors {
   DEFAULT = "default",
   PRIMARY = "primary",
   SECONDARY = "secondary",
@@ -13,7 +13,7 @@ export enum CustomButtonColors {
   DANGER = "danger",
 }
 
-export enum CustomButtonVariants {
+export enum ECustomButtonVariants {
   SOLID = "solid",
   BORDERED = "bordered",
   LIGHT = "light",
