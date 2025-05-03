@@ -24,11 +24,11 @@ import {
   useRemovePostMutation,
 } from "../../app/services/posts-api";
 import { useRemoveCommentMutation } from "../../app/services/comments-api";
-import { formatToClientDate } from "../../utils/format-to-client-date";
+import { formatToClientDate } from "@/utils";
 
-import { catchError } from "../../utils/error-util";
+import { catchError } from "@/utils";
 import { TComment } from "../../app/types";
-import { ECardTypes } from "@/enums";
+import { ECardTypes, EPathPages } from "@/enums";
 import { User, Typography, MetaInfo, ErrorMessage } from "@/components";
 
 type TCustomCard = {
@@ -113,7 +113,7 @@ export const CustomCard: React.FC<TCustomCard> = ({
           break;
         case "current-post":
           await deletePost(id).unwrap();
-          navigate("/");
+          navigate(EPathPages.LAYOUT);
           break;
         case "comment":
           await deleteComment(commentId).unwrap();

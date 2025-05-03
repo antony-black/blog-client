@@ -16,7 +16,7 @@ import { useEditUserProfileMutation } from "../../app/services/users-api";
 import { ThemeContext } from "../theme-provider";
 
 import { TUser } from "../../app/types";
-import { catchError } from "../../utils/error-util";
+import { catchError } from "@/utils";
 import {
   ECustomButtonColors,
   ECustomButtonTypes,

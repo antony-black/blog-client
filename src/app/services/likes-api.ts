@@ -1,3 +1,4 @@
+import { EPathGlobal } from "@/enums";
 import { TLike } from "../types";
 import { api } from "./api";
 
@@ -9,14 +10,14 @@ export const likesApi = api.injectEndpoints({
   endpoints: builder => ({
     addLike: builder.mutation<TLike, TLikeData>({
       query: postId => ({
-        url: "/likes/add",
+        url: EPathGlobal.ADD_LIKE,
         method: "POST",
         body: postId,
       }),
     }),
     removeLike: builder.mutation<void, string>({
       query: id => ({
-        url: `/likes/remove/${id}`,
+        url: `${EPathGlobal.REMOVE_LIKE}/${id}`,
         method: "DELETE",
       }),
     }),

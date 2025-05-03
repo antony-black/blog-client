@@ -10,7 +10,7 @@ import {
 } from "../../app/services/comments-api";
 import { useLazyGetPostByIdQuery } from "../../app/services/posts-api";
 
-import { catchError } from "../../utils/error-util";
+import { catchError } from "@/utils";
 import { ECustomButtonColors, ECustomButtonTypes } from "@/enums";
 import { ErrorMessage, CustomButton } from "@/components";
 

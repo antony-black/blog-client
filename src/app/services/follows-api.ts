@@ -1,3 +1,4 @@
+import { EPathGlobal } from "@/enums";
 import { api } from "./api";
 
 type TFollowData = {
@@ -8,14 +9,14 @@ export const followsApi = api.injectEndpoints({
   endpoints: builder => ({
     follow: builder.mutation<void, TFollowData>({
       query: body => ({
-        url: "/followers/follow",
+        url: EPathGlobal.FOLLOW,
         method: "POST",
         body,
       }),
     }),
     unfollow: builder.mutation<void, string>({
       query: followingId => ({
-        url: `/followers/unfollow/${followingId}`,
+        url: `${EPathGlobal.UNFOLLOW}/${followingId}`,
         method: "DELETE",
       }),
     }),

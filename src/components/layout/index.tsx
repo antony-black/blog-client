@@ -6,6 +6,7 @@ import Navbar from "../navbar";
 import { selectAuth, selectUser } from "../../features/auth-slice";
 import { useEffect } from "react";
 import { Profile } from "../profile";
+import { EPathPages } from "@/enums";
 
 const Layout: React.FC = () => {
   const isAuth = useSelector(selectAuth);
@@ -14,7 +15,7 @@ const Layout: React.FC = () => {
 
   useEffect(() => {
     if (!isAuth) {
-      navigate("/auth");
+      navigate(EPathPages.AUTH);
     }
   }, []);
 

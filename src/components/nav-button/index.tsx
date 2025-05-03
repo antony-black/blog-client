@@ -10,7 +10,7 @@ type TNavButton = {
 }
 
 
-const NavButton:React.FC<TNavButton> = ({children, icon, path}) => {
+export const NavButton:React.FC<TNavButton> = ({children, icon, path}) => {
   return (
     <CustomButton className="flex justify-start text-xl" icon={icon}>
       <Link to={path}>
@@ -19,5 +19,3 @@ const NavButton:React.FC<TNavButton> = ({children, icon, path}) => {
     </CustomButton>
   );
 }
-
-export default NavButton;

@@ -7,11 +7,11 @@ import {
   useLazyCurrentQuery,
   useLoginMutation,
 } from "../app/services/users-api";
-import { catchError } from "../utils/error-util";
+import { catchError } from "@/utils";
 
 import { CustomButton, CustomInput, ErrorMessage } from "@/components";
 
-import { ECustomButtonColors, ECustomButtonTypes } from "../enums";
+import { ECustomButtonColors, ECustomButtonTypes, EPathPages } from "@/enums";
 
 type TLogin = {
   setSelected: (value: string) => void;
@@ -41,7 +41,7 @@ const Login: React.FC<TLogin> = ({ setSelected }) => {
     try {
       await login(userData).unwrap();
       await triggerCurrentCuery().unwrap();
-      navigate("/");
+      navigate(EPathPages.LAYOUT);
     } catch (error) {
       catchError(error, setError);
     }

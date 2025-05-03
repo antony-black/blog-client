@@ -1,3 +1,4 @@
+import { EPathGlobal } from "@/enums";
 import { TUser } from "../types";
 import { api } from "./api";
 
@@ -18,34 +19,34 @@ export const usersApi = api.injectEndpoints({
   endpoints: builder => ({
     login: builder.mutation<TResponseData, TUserAuthData>({
       query: userData => ({
-        url: "/users/login",
+        url: EPathGlobal.LOGIN,
         method: "POST",
         body: userData,
       }),
     }),
     registration: builder.mutation<TResponseData, TUserAuthData>({
       query: userData => ({
-        url: "/users/registration",
+        url: EPathGlobal.REGISTRATION,
         method: "POST",
         body: userData,
       }),
     }),
     editUserProfile: builder.mutation<TUser, TUpdatedUserData>({
       query: ({ userData, id }) => ({
-        url: `/users/update/${id}`,
+        url: `${EPathGlobal.EDIT_PROFILE}/${id}`,
         method: "PUT",
         body: userData,
       }),
     }),
     current: builder.query<TUser, void>({
       query: () => ({
-        url: "/users/current",
+        url: EPathGlobal.CURRENT_USER,
         method: "GET",
       }),
     }),
     getUserById: builder.query<TUser, string>({
       query: id => ({
-        url: `/users/${id}`,
+        url: `${EPathGlobal.SINGLE_USER}/${id}`,
         method: "GET",
       }),
     }),

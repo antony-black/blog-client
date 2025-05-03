@@ -16,36 +16,37 @@ import Followers from "./pages/followers";
 import Following from "./pages/following";
 import UserProfile from "./pages/user-profile";
 import { AuthGuard } from "./features/auth-guard";
+import { EPathPages } from "@/enums";
 
 const container = document.getElementById("root");
 
 const router = createBrowserRouter([
   {
-    path: "/auth",
+    path: EPathPages.AUTH,
     element: <Auth />,
   },
   {
-    path: "/",
+    path: EPathPages.LAYOUT,
     element: <Layout />,
     children: [
       {
-        path: "",
+        path: EPathPages.POSTS,
         element: <Posts />,
       },
       {
-        path: "posts/:id",
+        path: EPathPages.CURRENT_POST,
         element: <CurrentPost />,
       },
       {
-        path: "/followers",
+        path: EPathPages.FOLLOWERS,
         element: <Followers />,
       },
       {
-        path: "/following",
+        path: EPathPages.FOLLOWING,
         element: <Following />,
       },
       {
-        path: "/users/:id",
+        path: EPathPages.USER_PROFILE,
         element: <UserProfile />,
       },
     ],

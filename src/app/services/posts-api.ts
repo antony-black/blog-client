@@ -1,3 +1,4 @@
+import { EPathGlobal } from "@/enums";
 import { TPost } from "../types";
 import { api } from "./api";
 
@@ -9,26 +10,26 @@ export const postsApi = api.injectEndpoints({
   endpoints: builder => ({
     createPost: builder.mutation<TPost, TPostData>({
       query: postData => ({
-        url: "/posts/create",
+        url: EPathGlobal.CREATE_POST,
         method: "POST",
         body: postData,
       }),
     }),
     getAllPosts: builder.query<TPost[], void>({
       query: () => ({
-        url: "/posts",
+        url: EPathGlobal.ALL_POSTS,
         method: "GET",
       }),
     }),
     getPostById: builder.query<TPost, string>({
       query: id => ({
-        url: `/posts/${id}`,
+        url: `${EPathGlobal.SINGLE_POST}/${id}`,
         method: "GET",
       }),
     }),
     removePost: builder.mutation<void, string>({
       query: id => ({
-        url: `/posts/remove/${id}`,
+        url: `${EPathGlobal.REMOVE_POST}/${id}`,
         method: "DELETE",
       }),
     }),
