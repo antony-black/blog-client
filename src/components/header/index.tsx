@@ -16,10 +16,12 @@ import { logout } from "@/features/auth-slice";
 
 import { CustomButton } from "@/components";
 import {
+  EButtons,
   ECustomButtonColors,
   ECustomButtonVariants,
   ELocalStorageKeys,
   EPathPages,
+  ETitles,
 } from "@/enums";
 
 export const Header: React.FC = () => {
@@ -36,7 +38,7 @@ export const Header: React.FC = () => {
   return (
     <Navbar>
       <NavbarBrand>
-        <p className="font-bold text-inherit">Network Social</p>
+        <p className="font-bold text-inherit">{ETitles.Network_Social}</p>
       </NavbarBrand>
       <NavbarContent className="gap-4" justify="end">
         <NavbarItem
@@ -52,7 +54,7 @@ export const Header: React.FC = () => {
             variant={ECustomButtonVariants.FLAT}
             onPress={handleLogOut}
           >
-            <CiLogout /> <span>logout</span>
+            <CiLogout /> <span>{EButtons.logout}</span>
           </CustomButton>
         </NavbarItem>
       </NavbarContent>

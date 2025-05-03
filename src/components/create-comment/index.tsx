@@ -11,11 +11,14 @@ import {
 import { useLazyGetPostByIdQuery } from "@/app/services/posts-api";
 
 import { catchError } from "@/utils";
-import { ECustomButtonColors, ECustomButtonTypes, EInputFields } from "@/enums";
+import {
+  EButtons,
+  ECustomButtonColors,
+  ECustomButtonTypes,
+  EInputFields,
+  EPlaceholders,
+} from "@/enums";
 import { ErrorMessage, CustomButton } from "@/components";
-
-const WRITE_COMMENT: string = "Write your comment.";
-const ADD_COMMENT: string = "Add comment";
 
 export const CreateComment: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -30,7 +33,7 @@ export const CreateComment: React.FC = () => {
       if (id) {
         await createComment({ content, postId: id }).unwrap();
         await getPostById(id).unwrap();
-        setValue("content", "");
+        setValue(EInputFields.content, "");
       }
     } catch (error) {
       catchError(error, setError);
@@ -50,7 +53,7 @@ export const CreateComment: React.FC = () => {
           <Textarea
             {...field}
             labelPlacement="outside"
-            placeholder={WRITE_COMMENT}
+            placeholder={EPlaceholders.write_comment}
             className="mb-5"
           />
         )}
@@ -62,7 +65,7 @@ export const CreateComment: React.FC = () => {
         endContent={<IoMdCreate />}
         type={ECustomButtonTypes.SUBMIT}
       >
-        {ADD_COMMENT}
+        {EButtons.Add_comment}
       </CustomButton>
     </form>
   );

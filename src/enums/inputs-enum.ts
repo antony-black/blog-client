@@ -21,6 +21,8 @@ export enum EPlaceholders {
   change_the_date = "change the date",
   add_something_about_yourself = "please, add something about yourself",
   change_your_location = "change your location",
+  write_comment = "Write your comment.",
+  what_do_you_think = "What do you think?",
 }
 
 export enum ELabels {

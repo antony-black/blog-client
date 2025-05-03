@@ -25,8 +25,10 @@ import { BASE_URL } from "@/constants";
 import { formatToClientDate } from "@/utils";
 import { catchError } from "@/utils";
 import {
+  EButtons,
   ECustomButtonColors,
   ECustomButtonVariants,
+  ETitles,
   EUserProfileTitles,
 } from "@/enums";
 import {
@@ -36,11 +38,6 @@ import {
   ProfileInfo,
   GoBack,
 } from "@/components";
-
-const SUBSCRIBE: string = "Subscribe";
-const UNSUBSCRIBE: string = "Unsubscribe";
-const FOLLOWERS: string = "Followers";
-const FOLLOWING: string = "Following";
 
 const UserProfile: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -126,7 +123,7 @@ const UserProfile: React.FC = () => {
                       )
                     }
                   >
-                    {data.isFollowing ? UNSUBSCRIBE : SUBSCRIBE}
+                    {data.isFollowing ? EButtons.Unsubscribe : EButtons.Subscribe}
                   </Button>
                 ) : (
                   <Button endContent={<CiEdit />} onPress={() => onOpen()}>
@@ -150,8 +147,8 @@ const UserProfile: React.FC = () => {
                 info={data.bio}
               />
               <div className="flex gap-2">
-                <CountInfo count={data?.followers?.length} title={FOLLOWERS} />
-                <CountInfo count={data?.following?.length} title={FOLLOWING} />
+                <CountInfo count={data?.followers?.length} title={ETitles.Followers} />
+                <CountInfo count={data?.following?.length} title={ETitles.Following} />
               </div>
             </Card>
           </div>
