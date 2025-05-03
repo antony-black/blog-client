@@ -1,6 +1,7 @@
 import { JSX } from "react";
 import {Link} from "react-router-dom";
-import CustomButton from "../custom-button";
+
+import {CustomButton} from "@/components";
 
 type TNavButton = {
   children: React.ReactNode;

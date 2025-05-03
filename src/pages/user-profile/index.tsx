@@ -21,9 +21,9 @@ import {
 import { useAppDispatch } from "../../app/hooks";
 
 import { BASE_URL } from "../../constants";
-// TODO: add aliase for "utils"
-import { formatToClientDate } from "../../utils/format-to-client-date";
-import { catchError } from "../../utils/error-util";
+
+import { formatToClientDate } from "@/utils";
+import { catchError } from "@/utils";
 import {
   ECustomButtonColors,
   ECustomButtonVariants,
