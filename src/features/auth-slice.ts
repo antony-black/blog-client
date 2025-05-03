@@ -19,7 +19,7 @@ const initialState: IInitState = {
   users: [],
   current: null,
 };
-// TODO: assign all strings to const
+
 const authSlice = createSlice({
   name: "auth",
   initialState,

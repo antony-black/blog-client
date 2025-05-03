@@ -1,6 +1,7 @@
+import { api } from "./api";
+
 import { EMethodsNames, EPathGlobal } from "@/enums";
 import { TUser } from "../types";
-import { api } from "./api";
 
 type TResponseData = TUser & { accessToken: string };
 
@@ -60,7 +61,7 @@ export const {
   useCurrentQuery,
   useGetUserByIdQuery,
   useLazyGetUserByIdQuery,
-  useLazyCurrentQuery
+  useLazyCurrentQuery,
 } = usersApi;
 
 export const {

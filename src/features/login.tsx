@@ -11,7 +11,7 @@ import { catchError } from "@/utils";
 
 import { CustomButton, CustomInput, ErrorMessage } from "@/components";
 
-import { ECustomButtonColors, ECustomButtonTypes, EPathPages } from "@/enums";
+import { ECustomButtonColors, ECustomButtonTypes, EInputFields, EPathPages } from "@/enums";
 
 type TLogin = {
   setSelected: (value: string) => void;
@@ -21,6 +21,11 @@ type TLoginUserData = {
   email: string;
   password: string;
 };
+
+const SIGN_UP_SELECTED: string = "sign-up";
+const NO_ACCOUNT: string = "If you have no account?";
+const GET_REGISTRATION: string = "Get registration.";
+const LOGIN: string = "Login";
 
 const Login: React.FC<TLogin> = ({ setSelected }) => {
   const navigate = useNavigate();
@@ -51,27 +56,27 @@ const Login: React.FC<TLogin> = ({ setSelected }) => {
     <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
       <CustomInput
         control={control}
-        name="email"
-        placeholder="email"
-        type="email"
-        required="Required field."
+        name={EInputFields.email}
+        placeholder={EInputFields.email}
+        type={EInputFields.email}
+        required={EInputFields.required}
       />
       <CustomInput
         control={control}
-        name="password"
-        placeholder="password"
-        type="password"
-        required="Required field."
+        name={EInputFields.password}
+        placeholder={EInputFields.password}
+        type={EInputFields.password}
+        required={EInputFields.required}
       />
       <ErrorMessage error={error} />
       <div className="text-center text-small">
-        If you have no account?{" "}
+        {NO_ACCOUNT}{" "}
         <Link
           className="cursor-pointer"
           size="sm"
-          onPress={() => setSelected("sign-up")}
+          onPress={() => setSelected(SIGN_UP_SELECTED)}
         >
-          Get registration.
+          {GET_REGISTRATION}
         </Link>
       </div>
       <div className="flex gap-2 justify-end">
@@ -81,7 +86,7 @@ const Login: React.FC<TLogin> = ({ setSelected }) => {
           color={ECustomButtonColors.PRIMARY}
           isLoading={isLoading}
         >
-          Login
+          {LOGIN}
         </CustomButton>
       </div>
     </form>
