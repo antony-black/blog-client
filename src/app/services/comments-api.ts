@@ -1,3 +1,4 @@
+import { EPathGlobal } from "@/enums";
 import { TComment } from "../types";
 import { api } from "./api";
 
@@ -10,14 +11,14 @@ export const commentsApi = api.injectEndpoints({
   endpoints: builder => ({
     createComment: builder.mutation<TComment, TCommentData>({
       query: commentData => ({
-        url: "/comments/create",
+        url: EPathGlobal.CREATE_COMMENT,
         method: "POST",
         body: commentData,
       }),
     }),
     removeComment: builder.mutation<void, string>({
       query: id => ({
-        url: `/comments/remove/${id}`,
+        url: `${EPathGlobal.REMOVE_COMMENT}/${id}`,
         method: "DELETE",
       }),
     }),

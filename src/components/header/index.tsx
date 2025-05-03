@@ -15,7 +15,7 @@ import { useAppDispatch } from "../../app/hooks";
 import { logout } from "../../features/auth-slice";
 
 import { CustomButton } from "@/components";
-import { ECustomButtonColors, ECustomButtonVariants } from "@/enums";
+import { ECustomButtonColors, ECustomButtonVariants, EPathPages } from "@/enums";
 
 const Header: React.FC = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -25,7 +25,7 @@ const Header: React.FC = () => {
   const handleLogOut = () => {
     dispatch(logout());
     localStorage.removeItem("accessToken");
-    navigate("/auth");
+    navigate(EPathPages.AUTH);
   };
 
   return (
