@@ -3,13 +3,10 @@ import { Controller, useForm } from "react-hook-form";
 import { Textarea } from "@nextui-org/react";
 import { IoMdCreate } from "react-icons/io";
 
-import {
-  TPostData,
-  useCreatePostMutation,
-  useLazyGetAllPostsQuery,
-} from "@/app/services";
+import { useCreatePostMutation, useLazyGetAllPostsQuery } from "@/app/services";
 
 import { catchError } from "@/utils";
+import { TPostData } from "@/types";
 import {
   EButtons,
   ECustomButtonColors,

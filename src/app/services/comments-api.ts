@@ -2,11 +2,7 @@ import { api } from "./api";
 
 import { EMethodsNames, EPathGlobal } from "@/enums";
 import { TComment } from "../types";
-
-export type TCommentData = {
-  content: string;
-  postId: string;
-};
+import { TCommentData } from "@/types";
 
 export const commentsApi = api.injectEndpoints({
   endpoints: builder => ({

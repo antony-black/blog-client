@@ -1,4 +1,4 @@
-import { TErrorWithMessage, TSetError } from "../types/error-types";
+import { TErrorWithMessage, TSetError } from "@/types";
 
 const UNKNOWN_ERROR: string = "Unknown error.";
 

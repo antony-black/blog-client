@@ -5,12 +5,12 @@ import { Textarea } from "@nextui-org/react";
 import { IoMdCreate } from "react-icons/io";
 
 import {
-  TCommentData,
   useCreateCommentMutation,
   useLazyGetPostByIdQuery,
 } from "@/app/services";
 
 import { catchError } from "@/utils";
+import { TCommentData } from "@/types";
 import {
   EButtons,
   ECustomButtonColors,

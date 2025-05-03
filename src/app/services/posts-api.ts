@@ -2,10 +2,7 @@ import { api } from "./api";
 
 import { EMethodsNames, EPathGlobal } from "@/enums";
 import { TPost } from "../types";
-
-export type TPostData = {
-  content: string;
-};
+import { TPostData } from "@/types";
 
 export const postsApi = api.injectEndpoints({
   endpoints: builder => ({
