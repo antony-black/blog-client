@@ -24,7 +24,7 @@ const Auth: React.FC = () => {
               <Tab key={EButtons.Login} title={EButtons.Login}>
                 <Login setSelected={setSelected} />
               </Tab>
-              <Tab key={EButtons.Login} title={EButtons.Login}>
+              <Tab key={EButtons.Register} title={EButtons.Register}>
                 <Registration setSelected={setSelected}/>
               </Tab>
             </Tabs>
