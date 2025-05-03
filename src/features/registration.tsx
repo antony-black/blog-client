@@ -5,9 +5,8 @@ import { Link } from "@nextui-org/react";
 import { useRegistrationMutation } from "@/app/services/users-api";
 import { catchError } from "@/utils";
 
-import { ECustomButtonColors, ECustomButtonTypes, EInputFields } from "@/enums";
+import { EButtons, ECustomButtonColors, ECustomButtonTypes, EInputFields } from "@/enums";
 import { CustomButton, CustomInput, ErrorMessage } from "@/components";
-import { LOGIN } from "@/constants";
 
 type TRegistration = {
   setSelected: (value: string) => void;
@@ -21,7 +20,6 @@ type TRegistrationUserData = {
 
 const HAVE_ACCOUNT: string = "If you have already had an account?";
 const PLEASE_LOGIN: string = "Please, login.";
-const REGISTER: string = "Register";
 
 const Registration: React.FC<TRegistration> = ({ setSelected }) => {
   const [register, { isLoading }] = useRegistrationMutation();
@@ -40,7 +38,7 @@ const Registration: React.FC<TRegistration> = ({ setSelected }) => {
   const onSubmit = async (userData: TRegistrationUserData) => {
     try {
       await register(userData).unwrap();
-      setSelected(LOGIN);
+      setSelected(EButtons.Login);
     } catch (error) {
       catchError(error, setError);
     }
@@ -75,7 +73,7 @@ const Registration: React.FC<TRegistration> = ({ setSelected }) => {
         <Link
           className="cursor-pointer"
           size="sm"
-          onPress={() => setSelected(LOGIN)}
+          onPress={() => setSelected(EButtons.Login)}
         >
           {PLEASE_LOGIN}
         </Link>
@@ -87,7 +85,7 @@ const Registration: React.FC<TRegistration> = ({ setSelected }) => {
           color={ECustomButtonColors.PRIMARY}
           isLoading={isLoading}
         >
-          {REGISTER}
+          {EButtons.Register}
         </CustomButton>
       </div>
     </form>

@@ -54,7 +54,7 @@ export const Header: React.FC = () => {
             variant={ECustomButtonVariants.FLAT}
             onPress={handleLogOut}
           >
-            <CiLogout /> <span>{EButtons.logout}</span>
+            <CiLogout /> <span>{EButtons.Logout}</span>
           </CustomButton>
         </NavbarItem>
       </NavbarContent>

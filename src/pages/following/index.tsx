@@ -5,14 +5,13 @@ import { useAppSelector } from "@/app/hooks";
 import { selectCurrent } from "@/features/auth-slice";
 
 import { User } from "@/components";
-
-const NOT_SUBSCRIBED: string = "You haven't had subscribed on any one yet.";
+import { ETitles } from "@/enums";
 
 const Following: React.FC = () => {
   const currentUser = useAppSelector(selectCurrent);
 
   if (!currentUser?.following || currentUser.following.length <= 0) {
-    return <h2>{NOT_SUBSCRIBED}</h2>;
+    return <h2>{ETitles.not_subscribed}</h2>;
   }
 
   return (

@@ -12,12 +12,12 @@ import { catchError } from "@/utils";
 import { CustomButton, CustomInput, ErrorMessage } from "@/components";
 
 import {
+  EButtons,
   ECustomButtonColors,
   ECustomButtonTypes,
   EInputFields,
   EPathPages,
 } from "@/enums";
-import { LOGIN, SIGN_UP } from "@/constants";
 
 type TLogin = {
   setSelected: (value: string) => void;
@@ -78,7 +78,7 @@ const Login: React.FC<TLogin> = ({ setSelected }) => {
         <Link
           className="cursor-pointer"
           size="sm"
-          onPress={() => setSelected(SIGN_UP)}
+          onPress={() => setSelected(EButtons.Sign_up)}
         >
           {GET_REGISTRATION}
         </Link>
@@ -90,7 +90,7 @@ const Login: React.FC<TLogin> = ({ setSelected }) => {
           color={ECustomButtonColors.PRIMARY}
           isLoading={isLoading}
         >
-          {LOGIN}
+          {EButtons.Login}
         </CustomButton>
       </div>
     </form>

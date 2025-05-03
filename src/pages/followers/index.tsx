@@ -5,14 +5,13 @@ import { useAppSelector } from "@/app/hooks";
 import { selectCurrent } from "@/features/auth-slice";
 
 import { User } from "@/components";
-
-const NO_SUBSCRIBERS: string = "You have no subscribers yet";
+import { ETitles } from "@/enums";
 
 const Followers: React.FC = () => {
   const currentUser = useAppSelector(selectCurrent);
 
   if (!currentUser?.followers || currentUser.followers.length <= 0) {
-    return <h2>{NO_SUBSCRIBERS}</h2>;
+    return <h2>{ETitles.no_subscribers}</h2>;
   }
 
   return (

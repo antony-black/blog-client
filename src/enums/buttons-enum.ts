@@ -4,7 +4,10 @@ export enum EButtons {
   Go_back = "Go back",
   Add_comment = "Add comment",
   Add_post = "Add post",
-  logout = "logout",
+  Logout = "logout",
   Subscribe = "Subscribe",
   Unsubscribe = "Unsubscribe",
+  Sign_up = "Sign-up",
+  Login = "Login",
+  Register = "Register",
 }

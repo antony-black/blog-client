@@ -22,8 +22,7 @@ import { useAppDispatch } from "@/app/hooks";
 
 import { BASE_URL } from "@/constants";
 
-import { formatToClientDate } from "@/utils";
-import { catchError } from "@/utils";
+import { formatToClientDate, catchError } from "@/utils";
 import {
   EButtons,
   ECustomButtonColors,
@@ -123,7 +122,9 @@ const UserProfile: React.FC = () => {
                       )
                     }
                   >
-                    {data.isFollowing ? EButtons.Unsubscribe : EButtons.Subscribe}
+                    {data.isFollowing
+                      ? EButtons.Unsubscribe
+                      : EButtons.Subscribe}
                   </Button>
                 ) : (
                   <Button endContent={<CiEdit />} onPress={() => onOpen()}>
@@ -147,8 +148,14 @@ const UserProfile: React.FC = () => {
                 info={data.bio}
               />
               <div className="flex gap-2">
-                <CountInfo count={data?.followers?.length} title={ETitles.Followers} />
-                <CountInfo count={data?.following?.length} title={ETitles.Following} />
+                <CountInfo
+                  count={data?.followers?.length}
+                  title={ETitles.Followers}
+                />
+                <CountInfo
+                  count={data?.following?.length}
+                  title={ETitles.Following}
+                />
               </div>
             </Card>
           </div>
