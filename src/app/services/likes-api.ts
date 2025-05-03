@@ -1,6 +1,7 @@
-import { EPathGlobal } from "@/enums";
-import { TLike } from "../types";
 import { api } from "./api";
+
+import { EMethodsNames, EPathGlobal } from "@/enums";
+import { TLike } from "../types";
 
 type TLikeData = {
   postId: string;
@@ -11,14 +12,14 @@ export const likesApi = api.injectEndpoints({
     addLike: builder.mutation<TLike, TLikeData>({
       query: postId => ({
         url: EPathGlobal.ADD_LIKE,
-        method: "POST",
+        method: EMethodsNames.POST,
         body: postId,
       }),
     }),
     removeLike: builder.mutation<void, string>({
       query: id => ({
         url: `${EPathGlobal.REMOVE_LIKE}/${id}`,
-        method: "DELETE",
+        method: EMethodsNames.DELETE,
       }),
     }),
   }),

@@ -1,6 +1,7 @@
-import { EPathGlobal } from "@/enums";
-import { TPost } from "../types";
 import { api } from "./api";
+
+import { EMethodsNames, EPathGlobal } from "@/enums";
+import { TPost } from "../types";
 
 export type TPostData = {
   content: string;
@@ -11,26 +12,26 @@ export const postsApi = api.injectEndpoints({
     createPost: builder.mutation<TPost, TPostData>({
       query: postData => ({
         url: EPathGlobal.CREATE_POST,
-        method: "POST",
+        method: EMethodsNames.POST,
         body: postData,
       }),
     }),
     getAllPosts: builder.query<TPost[], void>({
       query: () => ({
         url: EPathGlobal.ALL_POSTS,
-        method: "GET",
+        method: EMethodsNames.GET,
       }),
     }),
     getPostById: builder.query<TPost, string>({
       query: id => ({
         url: `${EPathGlobal.SINGLE_POST}/${id}`,
-        method: "GET",
+        method: EMethodsNames.GET,
       }),
     }),
     removePost: builder.mutation<void, string>({
       query: id => ({
         url: `${EPathGlobal.REMOVE_POST}/${id}`,
-        method: "DELETE",
+        method: EMethodsNames.DELETE,
       }),
     }),
   }),
@@ -42,7 +43,7 @@ export const {
   useGetPostByIdQuery,
   useRemovePostMutation,
   useLazyGetAllPostsQuery,
-  useLazyGetPostByIdQuery
+  useLazyGetPostByIdQuery,
 } = postsApi;
 
 export const {
