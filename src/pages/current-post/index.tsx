@@ -14,8 +14,10 @@ const CurrentPost: React.FC = () => {
   const params = useParams<{ id: string }>();
   const { data, isError } = useGetPostByIdQuery(params.id ?? "");
 
+  const NO_POST_ERROR: string = "There is no post!";
+
   if (isError || !data) {
-    return <ErrorMessage error="There is no post!" />;
+    return <ErrorMessage error={NO_POST_ERROR} />;
   }
 
   const {

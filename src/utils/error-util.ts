@@ -1,11 +1,15 @@
-import { TErrorWithMessage, TSetError } from '../types/error-types';
+import { TErrorWithMessage, TSetError } from "../types/error-types";
 
-export const isErrorWithMessage = (error: unknown): error is TErrorWithMessage => {
+const UNKNOWN_ERROR: string = "Unknown error.";
+
+export const isErrorWithMessage = (
+  error: unknown,
+): error is TErrorWithMessage => {
   return (
-    typeof error === 'object' &&
+    typeof error === "object" &&
     error !== null &&
-    'data' in error &&
-    typeof (error as Record<string, unknown>).data === 'object'
+    "data" in error &&
+    typeof (error as Record<string, unknown>).data === "object"
   );
 };
 
@@ -15,6 +19,6 @@ export const catchError = (error: unknown, setError: TSetError) => {
   if (isErrorHasMessage) {
     setError(error.data.message);
   } else {
-    setError('Unknown error.');
+    setError(UNKNOWN_ERROR);
   }
 };

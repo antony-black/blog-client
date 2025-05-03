@@ -3,6 +3,8 @@ import { usersApi } from "../app/services/users-api";
 
 export const listenerMiddleware = createListenerMiddleware();
 
+const ACCESS_TOKEN: string = "accessToken";
+
 listenerMiddleware.startListening({
   matcher: usersApi.endpoints.login.matchFulfilled,
   effect: async (action, listtenerApi) => {
@@ -11,7 +13,7 @@ listenerMiddleware.startListening({
     const accessToken = action.payload.accessToken;
 
     if (accessToken) {
-      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem(ACCESS_TOKEN, accessToken);
     }
   },
 });

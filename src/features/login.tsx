@@ -6,12 +6,18 @@ import { Link } from "@nextui-org/react";
 import {
   useLazyCurrentQuery,
   useLoginMutation,
-} from "../app/services/users-api";
+} from "@/app/services/users-api";
 import { catchError } from "@/utils";
 
 import { CustomButton, CustomInput, ErrorMessage } from "@/components";
 
-import { ECustomButtonColors, ECustomButtonTypes, EInputFields, EPathPages } from "@/enums";
+import {
+  ECustomButtonColors,
+  ECustomButtonTypes,
+  EInputFields,
+  EPathPages,
+} from "@/enums";
+import { LOGIN, SIGN_UP } from "@/constants";
 
 type TLogin = {
   setSelected: (value: string) => void;
@@ -22,10 +28,8 @@ type TLoginUserData = {
   password: string;
 };
 
-const SIGN_UP_SELECTED: string = "sign-up";
 const NO_ACCOUNT: string = "If you have no account?";
 const GET_REGISTRATION: string = "Get registration.";
-const LOGIN: string = "Login";
 
 const Login: React.FC<TLogin> = ({ setSelected }) => {
   const navigate = useNavigate();
@@ -74,7 +78,7 @@ const Login: React.FC<TLogin> = ({ setSelected }) => {
         <Link
           className="cursor-pointer"
           size="sm"
-          onPress={() => setSelected(SIGN_UP_SELECTED)}
+          onPress={() => setSelected(SIGN_UP)}
         >
           {GET_REGISTRATION}
         </Link>

@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Card, CardBody, Tab, Tabs } from "@nextui-org/react";
 
-import Login from "../../features/login";
-import Registration from "../../features/registration";
+import Login from "@/features/login";
+import Registration from "@/features/registration";
 import { ECustomButtonColors } from "@/enums";
+import { LOGIN, SIGN_UP } from "@/constants";
 
 const Auth: React.FC = () => {
-  const [selected, setSelected] = useState("login");
+  const [selected, setSelected] = useState(LOGIN);
 
   return (
     <div className="flex items-center justify-center h-screen">
@@ -21,10 +22,10 @@ const Auth: React.FC = () => {
               size="md"
               onSelectionChange={key => setSelected(key as string)}
             >
-              <Tab key="login" title="Login">
+              <Tab key={LOGIN} title={LOGIN}>
                 <Login setSelected={setSelected} />
               </Tab>
-              <Tab key="sign-up" title="Sign up">
+              <Tab key={SIGN_UP} title={SIGN_UP}>
                 <Registration setSelected={setSelected}/>
               </Tab>
             </Tabs>

@@ -8,19 +8,19 @@ import {
   MdOutlinePersonAddDisabled,
 } from "react-icons/md";
 
-import { resetUser, selectCurrent } from "../../features/auth-slice";
+import { resetUser, selectCurrent } from "@/features/auth-slice";
 import {
   useGetUserByIdQuery,
   useLazyCurrentQuery,
   useLazyGetUserByIdQuery,
-} from "../../app/services/users-api";
+} from "@/app/services/users-api";
 import {
   useFollowMutation,
   useUnfollowMutation,
-} from "../../app/services/follows-api";
-import { useAppDispatch } from "../../app/hooks";
+} from "@/app/services/follows-api";
+import { useAppDispatch } from "@/app/hooks";
 
-import { BASE_URL } from "../../constants";
+import { BASE_URL } from "@/constants";
 
 import { formatToClientDate } from "@/utils";
 import { catchError } from "@/utils";
@@ -34,8 +34,13 @@ import {
   EditProfile,
   CountInfo,
   ProfileInfo,
-  GoBack
+  GoBack,
 } from "@/components";
+
+const SUBSCRIBE: string = "Subscribe";
+const UNSUBSCRIBE: string = "Unsubscribe";
+const FOLLOWERS: string = "Followers";
+const FOLLOWING: string = "Following";
 
 const UserProfile: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -121,7 +126,7 @@ const UserProfile: React.FC = () => {
                       )
                     }
                   >
-                    {data.isFollowing ? "Unsubscribe" : "Subscribe"}
+                    {data.isFollowing ? UNSUBSCRIBE : SUBSCRIBE}
                   </Button>
                 ) : (
                   <Button endContent={<CiEdit />} onPress={() => onOpen()}>
@@ -145,8 +150,8 @@ const UserProfile: React.FC = () => {
                 info={data.bio}
               />
               <div className="flex gap-2">
-                <CountInfo count={data?.followers?.length} title="Followers" />
-                <CountInfo count={data?.following?.length} title="Following" />
+                <CountInfo count={data?.followers?.length} title={FOLLOWERS} />
+                <CountInfo count={data?.following?.length} title={FOLLOWING} />
               </div>
             </Card>
           </div>

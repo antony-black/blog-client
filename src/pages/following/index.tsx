@@ -1,16 +1,18 @@
 import { Link } from "react-router-dom";
 import { Card, CardBody } from "@nextui-org/react";
 
-import { useAppSelector } from "../../app/hooks";
-import { selectCurrent } from "../../features/auth-slice";
+import { useAppSelector } from "@/app/hooks";
+import { selectCurrent } from "@/features/auth-slice";
 
 import { User } from "@/components";
 
-const Following : React.FC = () => {
+const NOT_SUBSCRIBED: string = "You haven't had subscribed on any one yet.";
+
+const Following: React.FC = () => {
   const currentUser = useAppSelector(selectCurrent);
 
   if (!currentUser?.following || currentUser.following.length <= 0) {
-    return <h2>You haven't had subscribed on any one yet.</h2>;
+    return <h2>{NOT_SUBSCRIBED}</h2>;
   }
 
   return (
@@ -32,4 +34,4 @@ const Following : React.FC = () => {
   );
 };
 
-export default Following ;
+export default Following;

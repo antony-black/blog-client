@@ -2,11 +2,12 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "@nextui-org/react";
 
-import { useRegistrationMutation } from "../app/services/users-api";
+import { useRegistrationMutation } from "@/app/services/users-api";
 import { catchError } from "@/utils";
 
 import { ECustomButtonColors, ECustomButtonTypes, EInputFields } from "@/enums";
 import { CustomButton, CustomInput, ErrorMessage } from "@/components";
+import { LOGIN } from "@/constants";
 
 type TRegistration = {
   setSelected: (value: string) => void;
@@ -18,7 +19,6 @@ type TRegistrationUserData = {
   password: string;
 };
 
-const LOGIN_SELECTED: string = "login";
 const HAVE_ACCOUNT: string = "If you have already had an account?";
 const PLEASE_LOGIN: string = "Please, login.";
 const REGISTER: string = "Register";
@@ -40,7 +40,7 @@ const Registration: React.FC<TRegistration> = ({ setSelected }) => {
   const onSubmit = async (userData: TRegistrationUserData) => {
     try {
       await register(userData).unwrap();
-      setSelected(LOGIN_SELECTED);
+      setSelected(LOGIN);
     } catch (error) {
       catchError(error, setError);
     }
@@ -75,7 +75,7 @@ const Registration: React.FC<TRegistration> = ({ setSelected }) => {
         <Link
           className="cursor-pointer"
           size="sm"
-          onPress={() => setSelected(LOGIN_SELECTED)}
+          onPress={() => setSelected(LOGIN)}
         >
           {PLEASE_LOGIN}
         </Link>
