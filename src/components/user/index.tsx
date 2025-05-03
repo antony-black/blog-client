@@ -19,7 +19,9 @@ export const User: React.FC<TUser> = ({
       className={className}
       name={name}
       description={description}
-      avatarProps={{src: `${BASE_URL}${avatarUrl}`}}
+      avatarProps={{
+        src: avatarUrl ? `${BASE_URL}${avatarUrl}` : "/default-avatar.png",
+      }}
     />
   );
 };

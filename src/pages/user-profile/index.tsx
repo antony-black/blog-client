@@ -94,7 +94,7 @@ const UserProfile: React.FC = () => {
             <Card className="flex flex-col items-center text-center space-y-4 p-5 flex-2">
               <Image
                 className="border-4 border-white"
-                src={`${BASE_URL}${data.avatarUrl}`}
+                src={data.avatarUrl ? `${BASE_URL}${data.avatarUrl}` : "/default-avatar.png"}
                 alt={data.name}
                 width={200}
                 height={200}

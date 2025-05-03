@@ -5,7 +5,6 @@ import { RootState } from "../store";
 import { BASE_URL } from "@/constants";
 import { ELocalStorageKeys } from "@/enums";
 
-// TODO: assign all strings to const
 const baseQuery = fetchBaseQuery({
   baseUrl: `${BASE_URL}/api`,
   prepareHeaders: (headers, { getState }) => {
