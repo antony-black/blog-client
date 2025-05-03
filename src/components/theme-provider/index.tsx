@@ -1,6 +1,10 @@
 import React, { createContext, useState } from "react";
+import { ELocalStorageKeys } from "@/enums";
 
-type TThemeColor = "dark" | "light";
+const LIGHT: string = "light";
+const DARK: string = "dark";
+
+type TThemeColor = typeof DARK | typeof LIGHT;
 
 type TThemeContext = {
   theme: string;
@@ -8,20 +12,20 @@ type TThemeContext = {
 };
 
 export const ThemeContext = createContext<TThemeContext>({
-  theme: "dark",
+  theme: DARK,
   toggleTheme: () => null,
 });
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const storedTheme = localStorage.getItem("theme");
-  const currentTheme = storedTheme ? (storedTheme as TThemeColor) : "dark";
+  const storedTheme = localStorage.getItem(ELocalStorageKeys.THEME);
+  const currentTheme = storedTheme ? (storedTheme as TThemeColor) : DARK;
 
   const [theme, setTheme] = useState<TThemeColor>(currentTheme);
 
   const toggleTheme = () => {
     setTheme(prevTheme => {
-      const newTheme = prevTheme === "light" ? "dark" : "light";
-      localStorage.setItem("theme", newTheme);
+      const newTheme = prevTheme === LIGHT ? DARK : LIGHT;
+      localStorage.setItem(ELocalStorageKeys.THEME, newTheme);
 
       return newTheme;
     });
@@ -31,7 +35,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <main className={`${theme} text-foreground bg-background`}>
         {children}
-        </main>
+      </main>
     </ThemeContext.Provider>
   );
 };

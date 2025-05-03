@@ -11,20 +11,25 @@ import { LuSunMedium } from "react-icons/lu";
 import { CiLogout } from "react-icons/ci";
 
 import { ThemeContext } from "../theme-provider";
-import { useAppDispatch } from "../../app/hooks";
-import { logout } from "../../features/auth-slice";
+import { useAppDispatch } from "@/app/hooks";
+import { logout } from "@/features/auth-slice";
 
 import { CustomButton } from "@/components";
-import { ECustomButtonColors, ECustomButtonVariants, EPathPages } from "@/enums";
+import {
+  ECustomButtonColors,
+  ECustomButtonVariants,
+  ELocalStorageKeys,
+  EPathPages,
+} from "@/enums";
 
-const Header: React.FC = () => {
+export const Header: React.FC = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const handleLogOut = () => {
     dispatch(logout());
-    localStorage.removeItem("accessToken");
+    localStorage.removeItem(ELocalStorageKeys.ACCESS_TOKEN);
     navigate(EPathPages.AUTH);
   };
 
@@ -54,5 +59,3 @@ const Header: React.FC = () => {
     </Navbar>
   );
 };
-
-export default Header;

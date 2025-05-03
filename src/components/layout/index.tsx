@@ -1,12 +1,11 @@
+import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Container from "../container";
-import Header from "../header";
-import Navbar from "../navbar";
-import { selectAuth, selectUser } from "../../features/auth-slice";
-import { useEffect } from "react";
-import { Profile } from "../profile";
+
+import { selectAuth, selectUser } from "@/features/auth-slice";
+
 import { EPathPages } from "@/enums";
+import { Container, Header, Navbar, Profile } from "@/components";
 
 const Layout: React.FC = () => {
   const isAuth = useSelector(selectAuth);

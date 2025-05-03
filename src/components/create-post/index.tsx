@@ -7,11 +7,14 @@ import {
   TPostData,
   useCreatePostMutation,
   useLazyGetAllPostsQuery,
-} from "../../app/services/posts-api";
+} from "@/app/services/posts-api";
 
 import { catchError } from "@/utils";
-import { ECustomButtonColors, ECustomButtonTypes } from "@/enums";
+import { ECustomButtonColors, ECustomButtonTypes, EInputFields } from "@/enums";
 import { ErrorMessage, CustomButton } from "@/components";
+
+const WHAT_DO_YOU_THINK: string = "What do you think?";
+const ADD_POST: string = "Add post";
 
 export const CreatePost: React.FC = () => {
   const [createPost] = useCreatePostMutation();
@@ -23,7 +26,7 @@ export const CreatePost: React.FC = () => {
   const onSubmit = async (postData: TPostData) => {
     try {
       await createPost(postData).unwrap();
-      setValue("content", "");
+      setValue(EInputFields.content, "");
       await triggerGetAllPosts().unwrap();
     } catch (error) {
       catchError(error, setError);
@@ -33,17 +36,17 @@ export const CreatePost: React.FC = () => {
   return (
     <form className="flex-grow" onSubmit={handleSubmit(onSubmit)}>
       <Controller
-        name="content"
+        name={EInputFields.content}
         control={control}
         defaultValue=""
         rules={{
-          required: "Required field!",
+          required: EInputFields.required,
         }}
         render={({ field }) => (
           <Textarea
             {...field}
             labelPlacement="outside"
-            placeholder="What do you think?"
+            placeholder={WHAT_DO_YOU_THINK}
             className="mb-5"
           />
         )}
@@ -57,7 +60,7 @@ export const CreatePost: React.FC = () => {
         endContent={<IoMdCreate />}
         type={ECustomButtonTypes.SUBMIT}
       >
-        Add post
+        {ADD_POST}
       </CustomButton>
     </form>
   );

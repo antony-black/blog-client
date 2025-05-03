@@ -1,3 +1,4 @@
+import { EButtons } from "@/enums";
 import { FaRegArrowAltCircleLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
@@ -11,7 +12,7 @@ export const GoBack: React.FC = () => {
   return (
     <div className="text-default-500 flex items-center gap-2 mb-10 cursor-pointer" onClick={handleGoBack}>
       <FaRegArrowAltCircleLeft/>
-      Go back
+      {EButtons.Go_back}
     </div>
   );
 };

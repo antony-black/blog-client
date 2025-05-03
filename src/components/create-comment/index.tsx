@@ -7,24 +7,23 @@ import { IoMdCreate } from "react-icons/io";
 import {
   TCommentData,
   useCreateCommentMutation,
-} from "../../app/services/comments-api";
-import { useLazyGetPostByIdQuery } from "../../app/services/posts-api";
+} from "@/app/services/comments-api";
+import { useLazyGetPostByIdQuery } from "@/app/services/posts-api";
 
 import { catchError } from "@/utils";
-import { ECustomButtonColors, ECustomButtonTypes } from "@/enums";
+import { ECustomButtonColors, ECustomButtonTypes, EInputFields } from "@/enums";
 import { ErrorMessage, CustomButton } from "@/components";
+
+const WRITE_COMMENT: string = "Write your comment.";
+const ADD_COMMENT: string = "Add comment";
 
 export const CreateComment: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [createComment] = useCreateCommentMutation();
   const [getPostById] = useLazyGetPostByIdQuery();
-    const [error, setError] = useState<string>("");
+  const [error, setError] = useState<string>("");
 
-  const {
-    handleSubmit,
-    control,
-    setValue,
-  } = useForm<TCommentData>();
+  const { handleSubmit, control, setValue } = useForm<TCommentData>();
 
   const onSubmit = async ({ content }: { content: string }) => {
     try {
@@ -41,17 +40,17 @@ export const CreateComment: React.FC = () => {
   return (
     <form className="flex-grow" onSubmit={handleSubmit(onSubmit)}>
       <Controller
-        name="content"
+        name={EInputFields.content}
         control={control}
         defaultValue=""
         rules={{
-          required: "Required field.",
+          required: EInputFields.required,
         }}
         render={({ field }) => (
           <Textarea
             {...field}
             labelPlacement="outside"
-            placeholder="Write your comment."
+            placeholder={WRITE_COMMENT}
             className="mb-5"
           />
         )}
@@ -63,7 +62,7 @@ export const CreateComment: React.FC = () => {
         endContent={<IoMdCreate />}
         type={ECustomButtonTypes.SUBMIT}
       >
-        Add comment
+        {ADD_COMMENT}
       </CustomButton>
     </form>
   );

@@ -12,22 +12,23 @@ import { FcDislike } from "react-icons/fc";
 import { MdOutlineFavoriteBorder } from "react-icons/md";
 import { FaRegComment } from "react-icons/fa";
 
-import { useAppSelector } from "../../app/hooks";
-import { selectCurrent } from "../../features/auth-slice";
+import { useAppSelector } from "@/app/hooks";
+import { selectCurrent } from "@/features/auth-slice";
+// TODO: move all services imports to the index file
 import {
   useAddLikeMutation,
   useRemoveLikeMutation,
-} from "../../app/services/likes-api";
+} from "@/app/services/likes-api";
 import {
   useLazyGetAllPostsQuery,
   useLazyGetPostByIdQuery,
   useRemovePostMutation,
-} from "../../app/services/posts-api";
-import { useRemoveCommentMutation } from "../../app/services/comments-api";
+} from "@/app/services/posts-api";
+import { useRemoveCommentMutation } from "@/app/services/comments-api";
 import { formatToClientDate } from "@/utils";
 
 import { catchError } from "@/utils";
-import { TComment } from "../../app/types";
+import { TComment } from "@/app/types";
 import { ECardTypes, EPathPages } from "@/enums";
 import { User, Typography, MetaInfo, ErrorMessage } from "@/components";
 
@@ -45,6 +46,8 @@ type TCustomCard = {
   cardFor?: ECardTypes;
   likedByUser?: boolean;
 };
+
+const WRONG_TYPE: string = "Wrong argument cardFor";
 
 export const CustomCard: React.FC<TCustomCard> = ({
   avatarUrl = "",
@@ -72,17 +75,17 @@ export const CustomCard: React.FC<TCustomCard> = ({
 
   const refetchPosts = async () => {
     switch (cardFor) {
-      case "post":
+      case ECardTypes.POST:
         await triggerGetAllPosts().unwrap();
         break;
-      case "current-post":
+      case ECardTypes.CURRENT_POST:
         await triggerGetAllPosts().unwrap();
         break;
-      case "comment":
+      case ECardTypes.COMMENT:
         await triggerGetPostById(id).unwrap();
         break;
       default:
-        throw new Error("Wrong argument cardFor");
+        throw new Error(WRONG_TYPE);
     }
   };
 
@@ -92,11 +95,11 @@ export const CustomCard: React.FC<TCustomCard> = ({
         ? await unlike(id).unwrap()
         : await like({ postId: id }).unwrap();
 
-      if (cardFor === "current-post") {
+      if (cardFor === ECardTypes.CURRENT_POST) {
         await triggerGetPostById(id).unwrap();
       }
 
-      if (cardFor === "post") {
+      if (cardFor === ECardTypes.POST) {
         await triggerGetAllPosts().unwrap();
       }
     } catch (error) {
@@ -107,20 +110,20 @@ export const CustomCard: React.FC<TCustomCard> = ({
   const handleRemove = async () => {
     try {
       switch (cardFor) {
-        case "post":
+        case ECardTypes.POST:
           await deletePost(id).unwrap();
           await refetchPosts();
           break;
-        case "current-post":
+        case ECardTypes.CURRENT_POST:
           await deletePost(id).unwrap();
           navigate(EPathPages.LAYOUT);
           break;
-        case "comment":
+        case ECardTypes.COMMENT:
           await deleteComment(commentId).unwrap();
           await refetchPosts();
           break;
         default:
-          throw new Error("Wrong argument cardFor");
+          throw new Error(WRONG_TYPE);
       }
     } catch (error) {
       catchError(error, setError);

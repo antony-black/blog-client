@@ -5,28 +5,30 @@ import { FaUsers } from "react-icons/fa";
 import { EPathPages } from "@/enums";
 import { NavButton } from "@/components";
 
-const Navbar: React.FC = () => {
+const POSTS: string = "Posts";
+const FOLLOWING: string = "Following";
+const FOLLOWERS: string = "Followers";
+
+export const Navbar: React.FC = () => {
   return (
     <nav>
       <ul className="flex flex-col gap-5">
         <li>
           <NavButton path={EPathPages.LAYOUT} icon={<BsPostcard />}>
-            Posts
+            {POSTS}
           </NavButton>
         </li>
         <li>
           <NavButton path={EPathPages.FOLLOWING} icon={<FiUsers />}>
-            Following
+            {FOLLOWING}
           </NavButton>
         </li>
         <li>
           <NavButton path={EPathPages.FOLLOWERS} icon={<FaUsers />}>
-            Followers
+            {FOLLOWERS}
           </NavButton>
         </li>
       </ul>
     </nav>
   );
 };
-
-export default Navbar;

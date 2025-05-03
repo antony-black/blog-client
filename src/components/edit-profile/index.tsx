@@ -12,15 +12,20 @@ import {
 } from "@nextui-org/react";
 import { MdOutlineEmail } from "react-icons/md";
 
-import { useEditUserProfileMutation } from "../../app/services/users-api";
+import { useEditUserProfileMutation } from "@/app/services/users-api";
 import { ThemeContext } from "../theme-provider";
 
-import { TUser } from "../../app/types";
+import { TUser } from "@/app/types";
 import { catchError } from "@/utils";
 import {
+  EButtons,
   ECustomButtonColors,
   ECustomButtonTypes,
   ECustomButtonVariants,
+  EInputFields,
+  ELabels,
+  EPlaceholders,
+  ETitles,
 } from "@/enums";
 import { CustomInput, ErrorMessage } from "@/components";
 
@@ -63,18 +68,18 @@ export const EditProfile: React.FC<TEditProfile> = ({
     try {
       if (id) {
         const formData = new FormData();
-        data.name && formData.append("name", data.name);
+        data.name && formData.append(EInputFields.name, data.name);
         data.email &&
           data.email !== user?.email &&
-          formData.append("email", data.email);
+          formData.append(EInputFields.email, data.email);
         data.dateOfBirth &&
           formData.append(
-            "dateOfBirth",
+            EInputFields.date_of_birth,
             new Date(data.dateOfBirth).toISOString(),
           );
-        data.bio && formData.append("bio", data.bio);
-        data.location && formData.append("location", data.location);
-        selectedFile && formData.append("avatar", selectedFile);
+        data.bio && formData.append(EInputFields.bio, data.bio);
+        data.location && formData.append(EInputFields.location, data.location);
+        selectedFile && formData.append(EInputFields.avatar, selectedFile);
 
         await editUserProfile({ userData: formData, id }).unwrap();
         onClose();
@@ -83,26 +88,6 @@ export const EditProfile: React.FC<TEditProfile> = ({
       catchError(error, setError);
     }
   };
-  // const onSubmit = async (data: TUser) => {
-  //   try {
-  //     if (id) {
-  //       const formData = new FormData();
-  //       if (data.name) formData.append("name", data.name);
-  //       if (data.email && data.email !== user?.email) formData.append("email", data.email);
-  //       if (data.dateOfBirth) {
-  //         formData.append("dateOfBirth", new Date(data.dateOfBirth).toISOString());
-  //       }
-  //       if (data.bio) formData.append("bio", data.bio);
-  //       if (data.location) formData.append("location", data.location);
-  //       // if (selectedFile) formData.append("avatar", selectedFile);
-
-  //       await editUserProfile({ userData: formData, id }).unwrap();
-  //       onClose();
-  //     }
-  //   } catch (error) {
-  //     catchError(error, setError);
-  //   }
-  // };
 
   return (
     <Modal
@@ -115,7 +100,7 @@ export const EditProfile: React.FC<TEditProfile> = ({
         {onClose => (
           <>
             <ModalHeader className="flex flex-col gap-1">
-              Edit profile
+              {ETitles.Edit_profile}
             </ModalHeader>
             <ModalBody>
               <form
@@ -124,49 +109,49 @@ export const EditProfile: React.FC<TEditProfile> = ({
               >
                 <CustomInput
                   control={control}
-                  name="email"
-                  type="email"
-                  label="Email"
-                  placeholder="write a new email"
+                  name={EInputFields.email}
+                  type={EInputFields.email}
+                  label={ELabels.Email}
+                  placeholder={EPlaceholders.write_a_new_email}
                   endContent={<MdOutlineEmail />}
                 />
                 <CustomInput
                   control={control}
-                  name="name"
-                  type="text"
-                  label="Name"
-                  placeholder="write a new name"
+                  name={EInputFields.name}
+                  type={EInputFields.text}
+                  label={ELabels.Name}
+                  placeholder={EPlaceholders.write_a_new_name}
                 />
                 <input
-                  name="avatarUrl"
-                  type="file"
-                  placeholder="choose the file"
+                  name={EInputFields.avatar_url}
+                  type={EInputFields.file}
+                  placeholder={EPlaceholders.choose_the_file}
                   onChange={handleFileChange}
                 />
                 <CustomInput
                   control={control}
-                  name="dateOfBirth"
-                  type="date"
-                  label="Birthday"
-                  placeholder="change the date"
+                  name={EInputFields.date_of_birth}
+                  type={EInputFields.date}
+                  label={ELabels.Birthday}
+                  placeholder={EPlaceholders.change_the_date}
                 />
                 <Controller
                   control={control}
-                  name="bio"
+                  name={EInputFields.bio}
                   render={({ field }) => (
                     <Textarea
                       {...field}
                       rows={4}
-                      placeholder="please, add something about yourself"
+                      placeholder={EPlaceholders.add_something_about_yourself}
                     />
                   )}
                 />
                 <CustomInput
                   control={control}
-                  name="location"
-                  type="Location"
-                  label="location"
-                  placeholder="change your location"
+                  name={EInputFields.location}
+                  type={EInputFields.location}
+                  label={ELabels.Location}
+                  placeholder={EPlaceholders.change_your_location}
                 />
                 <ErrorMessage error={error} />
                 <div className="flex gap-2 justify-end">
@@ -176,7 +161,7 @@ export const EditProfile: React.FC<TEditProfile> = ({
                     fullWidth
                     isLoading={isLoading}
                   >
-                    Update profile
+                    {EButtons.Update_profile}
                   </Button>
                 </div>
               </form>
@@ -187,7 +172,7 @@ export const EditProfile: React.FC<TEditProfile> = ({
                 variant={ECustomButtonVariants.LIGHT}
                 onPress={onClose}
               >
-                Close
+                {EButtons.Close}
               </Button>
             </ModalFooter>
           </>

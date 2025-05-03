@@ -1,13 +1,17 @@
 import { createApi, fetchBaseQuery, retry } from "@reduxjs/toolkit/query/react";
-import { BASE_URL } from "../../constants";
+
 import { RootState } from "../store";
+
+import { BASE_URL } from "@/constants";
+import { ELocalStorageKeys } from "@/enums";
+
 // TODO: assign all strings to const
 const baseQuery = fetchBaseQuery({
   baseUrl: `${BASE_URL}/api`,
   prepareHeaders: (headers, { getState }) => {
     const accessToken =
       (getState() as RootState).auth.accessToken ||
-      localStorage.getItem("accessToken");
+      localStorage.getItem(ELocalStorageKeys.ACCESS_TOKEN);
 
       console.log("accessToken being used:", accessToken); 
 

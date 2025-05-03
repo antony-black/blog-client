@@ -1,9 +1,10 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
-import { usersApi } from "../app/services/users-api";
+
+import { usersApi } from "@/app/services/users-api";
+
+import { ELocalStorageKeys } from "@/enums";
 
 export const listenerMiddleware = createListenerMiddleware();
-
-const ACCESS_TOKEN: string = "accessToken";
 
 listenerMiddleware.startListening({
   matcher: usersApi.endpoints.login.matchFulfilled,
@@ -13,7 +14,7 @@ listenerMiddleware.startListening({
     const accessToken = action.payload.accessToken;
 
     if (accessToken) {
-      localStorage.setItem(ACCESS_TOKEN, accessToken);
+      localStorage.setItem(ELocalStorageKeys.ACCESS_TOKEN, accessToken);
     }
   },
 });
