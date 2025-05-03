@@ -7,8 +7,8 @@ import { IoMdCreate } from "react-icons/io";
 import {
   TCommentData,
   useCreateCommentMutation,
-} from "@/app/services/comments-api";
-import { useLazyGetPostByIdQuery } from "@/app/services/posts-api";
+  useLazyGetPostByIdQuery,
+} from "@/app/services";
 
 import { catchError } from "@/utils";
 import {

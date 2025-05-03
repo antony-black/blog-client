@@ -1,6 +1,6 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
 
-import { usersApi } from "@/app/services/users-api";
+import { usersApi } from "@/app/services";
 
 import { ELocalStorageKeys } from "@/enums";
 

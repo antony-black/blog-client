@@ -14,17 +14,16 @@ import { FaRegComment } from "react-icons/fa";
 
 import { useAppSelector } from "@/app/hooks";
 import { selectCurrent } from "@/features/auth-slice";
-// TODO: move all services imports to the index file
+
 import {
   useAddLikeMutation,
   useRemoveLikeMutation,
-} from "@/app/services/likes-api";
-import {
   useLazyGetAllPostsQuery,
   useLazyGetPostByIdQuery,
   useRemovePostMutation,
-} from "@/app/services/posts-api";
-import { useRemoveCommentMutation } from "@/app/services/comments-api";
+  useRemoveCommentMutation,
+} from "@/app/services";
+
 import { formatToClientDate } from "@/utils";
 
 import { catchError } from "@/utils";

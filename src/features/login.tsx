@@ -3,12 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Link } from "@nextui-org/react";
 
-import {
-  useLazyCurrentQuery,
-  useLoginMutation,
-} from "@/app/services/users-api";
-import { catchError } from "@/utils";
+import { useLazyCurrentQuery, useLoginMutation } from "@/app/services";
 
+import { catchError } from "@/utils";
 import { CustomButton, CustomInput, ErrorMessage } from "@/components";
 
 import {

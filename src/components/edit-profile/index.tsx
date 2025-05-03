@@ -12,7 +12,7 @@ import {
 } from "@nextui-org/react";
 import { MdOutlineEmail } from "react-icons/md";
 
-import { useEditUserProfileMutation } from "@/app/services/users-api";
+import { useEditUserProfileMutation } from "@/app/services";
 import { ThemeContext } from "../theme-provider";
 
 import { TUser } from "@/app/types";

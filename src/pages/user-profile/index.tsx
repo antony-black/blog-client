@@ -13,15 +13,12 @@ import {
   useGetUserByIdQuery,
   useLazyCurrentQuery,
   useLazyGetUserByIdQuery,
-} from "@/app/services/users-api";
-import {
   useFollowMutation,
   useUnfollowMutation,
-} from "@/app/services/follows-api";
+} from "@/app/services";
 import { useAppDispatch } from "@/app/hooks";
 
 import { BASE_URL } from "@/constants";
-
 import { formatToClientDate, catchError } from "@/utils";
 import {
   EButtons,

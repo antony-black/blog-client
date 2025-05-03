@@ -7,10 +7,16 @@ import {
   TPostData,
   useCreatePostMutation,
   useLazyGetAllPostsQuery,
-} from "@/app/services/posts-api";
+} from "@/app/services";
 
 import { catchError } from "@/utils";
-import { EButtons, ECustomButtonColors, ECustomButtonTypes, EInputFields, EPlaceholders } from "@/enums";
+import {
+  EButtons,
+  ECustomButtonColors,
+  ECustomButtonTypes,
+  EInputFields,
+  EPlaceholders,
+} from "@/enums";
 import { ErrorMessage, CustomButton } from "@/components";
 
 export const CreatePost: React.FC = () => {

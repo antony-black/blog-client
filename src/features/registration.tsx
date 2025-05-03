@@ -2,10 +2,15 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "@nextui-org/react";
 
-import { useRegistrationMutation } from "@/app/services/users-api";
-import { catchError } from "@/utils";
+import { useRegistrationMutation } from "@/app/services";
 
-import { EButtons, ECustomButtonColors, ECustomButtonTypes, EInputFields } from "@/enums";
+import { catchError } from "@/utils";
+import {
+  EButtons,
+  ECustomButtonColors,
+  ECustomButtonTypes,
+  EInputFields,
+} from "@/enums";
 import { CustomButton, CustomInput, ErrorMessage } from "@/components";
 
 type TRegistration = {

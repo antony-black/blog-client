@@ -1,4 +1,4 @@
-import { useGetAllPostsQuery } from "@/app/services/posts-api";
+import { useGetAllPostsQuery } from "@/app/services";
 
 import { ECardTypes } from "@/enums";
 import { CreatePost, CustomCard } from "@/components";
